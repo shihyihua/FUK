@@ -189,7 +189,7 @@
   .day-num{
     position:absolute;
     left:0; top:0;
-    width:78px; height:78px;
+    width:86px; height:86px;
     border:1px solid rgba(242,237,225,0.4);
     border-radius:50%;
     display:flex;flex-direction:column;
@@ -198,7 +198,7 @@
     z-index:2;
   }
   .day-num .kanji{font-family:'Shippori Mincho',serif;font-size:1.5rem;color:var(--kaki-soft);}
-  .day-num .date{font-size:.62rem;letter-spacing:.05em;color:rgba(242,237,225,0.75);margin-top:.15rem;}
+  .day-num .date{font-size:.58rem;letter-spacing:.02em;color:rgba(242,237,225,0.75);margin-top:.15rem;}
 
   .day-mode{
     display:inline-flex;
@@ -408,7 +408,7 @@
 
     <!-- DAY 1 -->
     <div class="day-block">
-      <div class="day-num"><span class="kanji">一</span><span class="date">9/25</span></div>
+      <div class="day-num"><span class="kanji">一</span><span class="date">9/25(五)</span></div>
       <div class="day-card">
         <div class="day-mode">✈️ 抵達日</div>
 
@@ -456,7 +456,7 @@
         </div>
 
         <div class="day-meals">
-          <div><span>早餐</span>釜山機場自理</div>
+          <div><span>早餐</span>釜山機場（廉航無供餐，機場自理）</div>
           <div><span>午餐</span>運河城美食街</div>
           <div><span>晚餐</span>博多豚骨拉麵</div>
         </div>
@@ -466,10 +466,17 @@
 
     <!-- DAY 2 -->
     <div class="day-block">
-      <div class="day-num"><span class="kanji">二</span><span class="date">9/26</span></div>
+      <div class="day-num"><span class="kanji">二</span><span class="date">9/26(六)</span></div>
       <div class="day-card">
         <div class="day-mode">🚃 電車一日</div>
 
+        <div class="timeline-item">
+          <div class="timeline-time">08:30</div>
+          <div class="timeline-content">
+            <div class="t-title">The Full Full 博多店・明太子法國麵包</div>
+            <div class="t-desc">祇園町人氣排隊麵包店，距博多站步行約 10 分鐘，剛出爐外脆內軟，當作今天的早餐再出發。</div>
+          </div>
+        </div>
         <div class="timeline-item">
           <div class="timeline-time">09:30</div>
           <div class="timeline-content">
@@ -514,7 +521,7 @@
         </div>
 
         <div class="day-meals">
-          <div><span>早餐</span>飯店周邊或超商</div>
+          <div><span>早餐</span>The Full Full 明太子法國麵包</div>
           <div><span>午餐</span>太宰府梅枝餅・參道小吃</div>
           <div><span>晚餐</span>天神或博多站周邊自由選擇</div>
         </div>
@@ -523,7 +530,7 @@
 
     <!-- DAY 3 -->
     <div class="day-block">
-      <div class="day-num"><span class="kanji">三</span><span class="date">9/27</span></div>
+      <div class="day-num"><span class="kanji">三</span><span class="date">9/27(日)</span></div>
       <div class="day-card">
         <div class="day-mode">🚂 特急列車</div>
 
@@ -570,17 +577,24 @@
           </div>
         </div>
         <div class="timeline-item">
+          <div class="timeline-time">17:30</div>
+          <div class="timeline-content">
+            <div class="t-title">車站購買由布院之森便當或人氣小吃</div>
+            <div class="t-desc">出發前在由布院站周邊採買限定便當或熱門小吃，帶上車享用當晚餐，不用再趕博多的餐廳。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
           <div class="timeline-time">17:45</div>
           <div class="timeline-content">
             <div class="t-title">搭車返回博多</div>
-            <div class="t-desc">建議預留備用車次，避免逛街逛過頭錯過班次。</div>
+            <div class="t-desc">建議預留備用車次，避免逛街逛過頭錯過班次，車上邊欣賞夕陽邊享用晚餐。</div>
           </div>
         </div>
 
         <div class="day-meals">
-          <div><span>早餐</span>飯店周邊或超商</div>
+          <div><span>早餐</span>超商</div>
           <div><span>午餐</span>由布院豐後牛・地雞料理</div>
-          <div><span>晚餐</span>博多站周邊自由選擇</div>
+          <div><span>晚餐</span>由布院之森便當或由布院小吃</div>
         </div>
         <div class="day-flag">原訂重點：由布院</div>
       </div>
@@ -588,7 +602,7 @@
 
     <!-- DAY 4 -->
     <div class="day-block">
-      <div class="day-num"><span class="kanji">四</span><span class="date">9/28</span></div>
+      <div class="day-num"><span class="kanji">四</span><span class="date">9/28(一)</span></div>
       <div class="day-card">
         <div class="day-mode">🚢 島嶼＋🛍️ 購物</div>
 
@@ -646,9 +660,10 @@
 
     <!-- DAY 5 -->
     <div class="day-block">
-      <div class="day-num"><span class="kanji">五</span><span class="date">9/29</span></div>
+      <div class="day-num"><span class="kanji">五</span><span class="date">9/29(二)</span></div>
       <div class="day-card">
         <div class="day-mode">🚌 長途巴士／包車</div>
+        <div style="display:inline-block;margin-bottom:1.2rem;font-size:.82rem;color:var(--kaki-soft);background:rgba(226,137,90,0.14);padding:.4rem .8rem;border-radius:2px;border:1px solid rgba(226,137,90,0.3);">因阿蘇火山直升機事故，阿蘇地區目前暫停一切觀光活動，故不安排草千里，改以延伸高千穗周邊景點為主。</div>
 
         <div class="timeline-item">
           <div class="timeline-time">07:30</div>
@@ -686,14 +701,21 @@
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">16:30</div>
+          <div class="timeline-time">16:00</div>
+          <div class="timeline-content">
+            <div class="t-title">天岩戸神社・天安河原</div>
+            <div class="t-desc">距高千穗峽約 10 分鐘車程，日本神話「天照大神」隱身岩洞的傳說地，天安河原的疊石祈願景象氛圍靜謐，與高千穗峽神話色彩相呼應。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:00</div>
           <div class="timeline-content">
             <div class="t-title">返程出發</div>
             <div class="t-desc">山路車程較長，建議傍晚啟程返回福岡市區，途中可小憩。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">20:30</div>
+          <div class="timeline-time">21:00</div>
           <div class="timeline-content">
             <div class="t-title">抵達博多・簡單晚餐</div>
             <div class="t-desc">回程較晚，晚餐可選飯店附近清爽好消化的選擇。</div>
@@ -711,7 +733,7 @@
 
     <!-- DAY 6 -->
     <div class="day-block">
-      <div class="day-num"><span class="kanji">六</span><span class="date">9/30</span></div>
+      <div class="day-num"><span class="kanji">六</span><span class="date">9/30(三)</span></div>
       <div class="day-card">
         <div class="day-mode">✈️ 賦歸日</div>
 

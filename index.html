@@ -105,6 +105,58 @@
     color:rgba(242,237,225,0.55);
   }
 
+  /* ---------- OVERVIEW ---------- */
+  .overview-grid{
+    max-width:1000px;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:1.2rem;
+  }
+  .overview-card{
+    display:block;
+    text-decoration:none;
+    background:var(--washi-warm);
+    border:1px solid var(--line);
+    border-left:3px solid var(--kaki);
+    border-radius:4px;
+    padding:1.3rem 1.4rem;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .overview-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 8px 20px rgba(122,39,18,0.12);
+  }
+  .overview-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:.6rem;
+  }
+  .overview-day{
+    font-family:'Shippori Mincho',serif;
+    font-size:.95rem;
+    color:var(--kaki);
+    letter-spacing:.05em;
+  }
+  .overview-date{
+    font-size:.78rem;
+    color:rgba(34,32,28,0.55);
+    letter-spacing:.03em;
+  }
+  .overview-title{
+    color:var(--indigo-deep);
+    font-weight:700;
+    font-size:1rem;
+    line-height:1.6;
+  }
+  .overview-mode{
+    margin-top:.5rem;
+    font-size:.78rem;
+    color:rgba(34,32,28,0.55);
+    letter-spacing:.05em;
+  }
+
   /* ---------- SECTION SHELL ---------- */
   section{
     padding:5.5rem 6vw;
@@ -393,6 +445,54 @@
         <div class="transit-note">建議提早 3-4 小時抵達福岡機場，午後行程留白緩衝。此段亦為廉航無供餐，登機前請於機場內用餐或購買點心。</div>
       </div>
     </div>
+    <div class="transit-row">
+      <div class="transit-icon">🏨</div>
+      <div>
+        <div class="transit-title">飯店　Via Inn 博多口駅前</div>
+        <div class="transit-detail">2 Chome-17-11 Hakata Ekimae, Hakata Ward, Fukuoka｜入住 15:00　｜　退房 10:00</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="section-head">
+    <span class="eyebrow">簡介</span>
+    <h2>六天五夜　一覽</h2>
+    <p>先看懂全貌，再進到每天的細節。點選卡片可直接跳到當天行程。</p>
+  </div>
+  <div class="overview-grid">
+    <a class="overview-card" href="#day1">
+      <div class="overview-top"><span class="overview-day">第一天</span><span class="overview-date">9/25(五)</span></div>
+      <div class="overview-title">抵達福岡・博多老街散策</div>
+      <div class="overview-mode">✈️ 抵達日</div>
+    </a>
+    <a class="overview-card" href="#day2">
+      <div class="overview-top"><span class="overview-day">第二天</span><span class="overview-date">9/26(六)</span></div>
+      <div class="overview-title">太宰府天滿宮・福岡塔・百道濱</div>
+      <div class="overview-mode">🚃 電車一日</div>
+    </a>
+    <a class="overview-card" href="#day3">
+      <div class="overview-top"><span class="overview-day">第三天</span><span class="overview-date">9/27(日)</span></div>
+      <div class="overview-title">由布院・日歸溫泉・金鱗湖</div>
+      <div class="overview-mode">🚂 特急列車（07:43 發車）</div>
+    </a>
+    <a class="overview-card" href="#day4">
+      <div class="overview-top"><span class="overview-day">第四天</span><span class="overview-date">9/28(一)</span></div>
+      <div class="overview-title">高千穗・草千里（一日券）</div>
+      <div class="overview-mode">🚌 博多阪急 B1　08:00 集合</div>
+    </a>
+    <a class="overview-card" href="#day5">
+      <div class="overview-top"><span class="overview-day">第五天</span><span class="overview-date">9/29(二)</span></div>
+      <div class="overview-title">購物日・唐吉訶德・天神・一蘭拉麵</div>
+      <div class="overview-mode">🛍️ 購物日</div>
+    </a>
+    <a class="overview-card" href="#day6">
+      <div class="overview-top"><span class="overview-day">第六天</span><span class="overview-date">9/30(三)</span></div>
+      <div class="overview-title">東長寺・櫛田神社・川端通・賦歸</div>
+      <div class="overview-mode">✈️ 賦歸日</div>
+    </a>
   </div>
 </section>
 
@@ -401,13 +501,13 @@
   <div class="section-head">
     <span class="eyebrow">六天五夜　行程總覽</span>
     <h2 style="color:var(--washi);">慢慢走，才走得遠</h2>
-    <p style="color:rgba(242,237,225,0.65);">以博多為基地，安排寬鬆步調；由布院、高千穗維持原定重點，並依此延伸周邊順遊景點。時間僅供抓大概，可依現場彈性調整。</p>
+    <p style="color:rgba(242,237,225,0.65);">以博多為基地，安排寬鬆步調；太宰府、由布院、高千穗・草千里、購物、東長寺等既定重點皆保留，並依此延伸周邊順遊景點。時間僅供抓大概，可依現場彈性調整。</p>
   </div>
 
   <div class="day-track">
 
     <!-- DAY 1 -->
-    <div class="day-block">
+    <div class="day-block" id="day1">
       <div class="day-num"><span class="kanji">一</span><span class="date">9/25(五)</span></div>
       <div class="day-card">
         <div class="day-mode">✈️ 抵達日</div>
@@ -423,7 +523,7 @@
           <div class="timeline-time">11:30</div>
           <div class="timeline-content">
             <div class="t-title">Via Inn 博多口駅前 寄放行李</div>
-            <div class="t-desc">飯店就在博多站正對面，先寄放行李再輕裝出門，下午再回來辦理入住。</div>
+            <div class="t-desc">飯店就在博多站正對面，官方入住時間為 15:00，先寄放行李再輕裝出門。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -436,8 +536,8 @@
         <div class="timeline-item">
           <div class="timeline-time">14:30</div>
           <div class="timeline-content">
-            <div class="t-title">櫛田神社・博多町家老街</div>
-            <div class="t-desc">博多祇園山笠的信仰中心，周邊古民家街區適合慢慢散步拍照。</div>
+            <div class="t-title">博多町家老街散策</div>
+            <div class="t-desc">古民家街區與傳統町家建築，適合慢慢散步拍照，感受博多老城的生活氣息。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -465,7 +565,7 @@
     </div>
 
     <!-- DAY 2 -->
-    <div class="day-block">
+    <div class="day-block" id="day2">
       <div class="day-num"><span class="kanji">二</span><span class="date">9/26(六)</span></div>
       <div class="day-card">
         <div class="day-mode">🚃 電車一日</div>
@@ -529,58 +629,65 @@
     </div>
 
     <!-- DAY 3 -->
-    <div class="day-block">
+    <div class="day-block" id="day3">
       <div class="day-num"><span class="kanji">三</span><span class="date">9/27(日)</span></div>
       <div class="day-card">
-        <div class="day-mode">🚂 特急列車</div>
+        <div class="day-mode">🚂 特急列車＋日歸溫泉</div>
 
         <div class="timeline-item">
-          <div class="timeline-time">08:20</div>
+          <div class="timeline-time">07:43</div>
           <div class="timeline-content">
             <div class="t-title">博多站搭乘特急由布院之森</div>
-            <div class="t-desc">JR 觀光列車，車程約 2 小時 10 分，建議提前預約指定席。</div>
+            <div class="t-desc">今天發車較早，車程約 2 小時 10 分，建議提前預約指定席，並提早 15 分鐘到站取票。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">10:40</div>
+          <div class="timeline-time">09:55</div>
           <div class="timeline-content">
             <div class="t-title">抵達由布院站・車站周邊</div>
             <div class="t-desc">由布院站本身即是知名建築，站內有藝廊與足湯可先體驗。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">11:30</div>
+          <div class="timeline-time">10:20</div>
+          <div class="timeline-content">
+            <div class="t-title">金鱗湖散步</div>
+            <div class="t-desc">清晨的湖面薄霧尚未散去，此時光線最美，環湖一圈約 20 分鐘，適合放空。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:00</div>
+          <div class="timeline-content">
+            <div class="t-title">由布院 日歸溫泉體驗</div>
+            <div class="t-desc">挑一間有露天風呂的日歸溫泉設施泡湯放鬆，由布岳山景近在眼前，記得確認是否需自備或租借毛巾。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">13:00</div>
+          <div class="timeline-content">
+            <div class="t-title">午餐・由布院小吃或由布釜飯「心」</div>
+            <div class="t-desc">泡完湯正好覺得餓，釜飯「心」是在地人氣店家，也可沿路挑喜歡的小吃簡單解決。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">14:30</div>
           <div class="timeline-content">
             <div class="t-title">湯之坪街道 Yunotsubo Kaido</div>
             <div class="t-desc">兩旁伴手禮、甜點、雜貨小舖林立，邊走邊吃不趕時間，喜歡的店就多待一會。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">13:00</div>
-          <div class="timeline-content">
-            <div class="t-title">午餐・湯布院豐後牛或地雞料理</div>
-            <div class="t-desc">當地特色食材，餐廳選擇多，可依排隊人潮彈性挑選。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14:30</div>
-          <div class="timeline-content">
-            <div class="t-title">金鱗湖散步</div>
-            <div class="t-desc">湖畔晨霧景致著名，午後光線也很美，環湖一圈約 20 分鐘，適合放空。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
           <div class="timeline-time">16:00</div>
           <div class="timeline-content">
-            <div class="t-title">自由散策・咖啡廳小憩</div>
-            <div class="t-desc">若還有餘裕，可挑一間喜歡的咖啡店坐下來，欣賞由布岳山景。</div>
+            <div class="t-title">MaxValu超市採買</div>
+            <div class="t-desc">車站周邊超市，價格比土產店實惠，適合買零食飲料與回程小點心。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">17:30</div>
+          <div class="timeline-time">16:45</div>
           <div class="timeline-content">
-            <div class="t-title">車站購買由布院之森便當或人氣小吃</div>
-            <div class="t-desc">出發前在由布院站周邊採買限定便當或熱門小吃，帶上車享用當晚餐，不用再趕博多的餐廳。</div>
+            <div class="t-title">車站周邊採買晚餐</div>
+            <div class="t-desc">出發前在由布院站購買限定便當或熱門小吃，帶上車享用當晚餐，不用再趕博多的餐廳。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -593,83 +700,31 @@
 
         <div class="day-meals">
           <div><span>早餐</span>超商</div>
-          <div><span>午餐</span>由布院豐後牛・地雞料理</div>
+          <div><span>午餐</span>由布院小吃或由布釜飯「心」</div>
           <div><span>晚餐</span>由布院之森便當或由布院小吃</div>
         </div>
-        <div class="day-flag">原訂重點：由布院</div>
+        <div class="day-flag">原訂重點：由布院・日歸溫泉・金鱗湖・MaxValu超市（07:43 發車）</div>
       </div>
     </div>
 
     <!-- DAY 4 -->
-    <div class="day-block">
+    <div class="day-block" id="day4">
       <div class="day-num"><span class="kanji">四</span><span class="date">9/28(一)</span></div>
       <div class="day-card">
-        <div class="day-mode">🚢 島嶼＋🛍️ 購物</div>
+        <div class="day-mode">🚌 一日巴士遊</div>
 
         <div class="timeline-item">
-          <div class="timeline-time">09:30</div>
+          <div class="timeline-time">07:40</div>
           <div class="timeline-content">
-            <div class="t-title">姪浜渡船場搭船前往能古島</div>
-            <div class="t-desc">船程約 10 分鐘，能古島海島公園有花田與海景，秋季可賞波斯菊。也可選擇改為睡到自然醒、直接於中午前往市區。</div>
+            <div class="t-title">博多阪急百貨 B1 集合</div>
+            <div class="t-desc">集合時間 08:00，建議提早 20 分鐘抵達確認集合地點與領取車票。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">12:00</div>
+          <div class="timeline-time">08:00</div>
           <div class="timeline-content">
-            <div class="t-title">返回市區・午餐</div>
-            <div class="t-desc">回到博多或天神地區用餐，為下午的購物行程補充體力。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14:00</div>
-          <div class="timeline-content">
-            <div class="t-title">天神地下街・岩田屋・大丸福岡天神店</div>
-            <div class="t-desc">福岡最大購物聚落，百貨、藥妝、生活雜貨一次逛齊。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">16:30</div>
-          <div class="timeline-content">
-            <div class="t-title">今泉・警固神社周邊選物店</div>
-            <div class="t-desc">巷弄型選品店與咖啡廳聚集區，適合喜歡逛小店的人。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">18:30</div>
-          <div class="timeline-content">
-            <div class="t-title">晚餐・屋台文化體驗</div>
-            <div class="t-desc">天神或中洲一帶屋台聚集，坐在路邊攤感受福岡夜晚的煙火氣。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">20:30</div>
-          <div class="timeline-content">
-            <div class="t-title">博多站 JR博多City・AMU PLAZA</div>
-            <div class="t-desc">回程順路採買最後一波伴手禮，營業時間較晚，安心不趕時間。</div>
-          </div>
-        </div>
-
-        <div class="day-meals">
-          <div><span>早餐</span>飯店周邊或超商</div>
-          <div><span>午餐</span>市區自由選擇</div>
-          <div><span>晚餐</span>屋台或天神商圈</div>
-        </div>
-        <div class="day-flag">原訂重點：下午晚上購物行程</div>
-      </div>
-    </div>
-
-    <!-- DAY 5 -->
-    <div class="day-block">
-      <div class="day-num"><span class="kanji">五</span><span class="date">9/29(二)</span></div>
-      <div class="day-card">
-        <div class="day-mode">🚌 長途巴士／包車</div>
-        <div style="display:inline-block;margin-bottom:1.2rem;font-size:.82rem;color:var(--kaki-soft);background:rgba(226,137,90,0.14);padding:.4rem .8rem;border-radius:2px;border:1px solid rgba(226,137,90,0.3);">因阿蘇火山直升機事故，阿蘇地區目前暫停一切觀光活動，故不安排草千里，改以延伸高千穗周邊景點為主。</div>
-
-        <div class="timeline-item">
-          <div class="timeline-time">07:30</div>
-          <div class="timeline-content">
-            <div class="t-title">博多站出發</div>
-            <div class="t-desc">高千穗地處宮崎縣山區，公共交通需轉乘高速巴士（約經延岡）；車程較長，建議評估參加當地一日遊巴士行程或包車，較省時省力。</div>
+            <div class="t-title">遊覽巴士出發・前往高千穗</div>
+            <div class="t-desc">山路車程約 3.5 小時，可於車上補眠，實際行駛時間依當日路況與司機安排調整。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -683,56 +738,142 @@
           <div class="timeline-time">13:00</div>
           <div class="timeline-content">
             <div class="t-title">高千穗峽划船</div>
-            <div class="t-desc">今天最重要的行程，真名井瀑布近距離划船欣賞，建議提早到現場排隊租船，旺季常需候船。</div>
+            <div class="t-desc">今天最重要的行程之一，真名井瀑布近距離划船欣賞，建議提早到現場排隊租船，旺季常需候船。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">14:30</div>
+          <div class="timeline-time">14:15</div>
           <div class="timeline-content">
             <div class="t-title">高千穗峽步道・御橋觀景台</div>
             <div class="t-desc">沿峽谷步道散步，從高處欣賞柱狀節理地形與瀑布全景。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">15:30</div>
+          <div class="timeline-time">15:00</div>
           <div class="timeline-content">
             <div class="t-title">高千穗神社</div>
             <div class="t-desc">神話色彩濃厚的古社，境內夫妻杉為知名景點。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">16:00</div>
+          <div class="timeline-time">15:45</div>
           <div class="timeline-content">
-            <div class="t-title">天岩戸神社・天安河原</div>
-            <div class="t-desc">距高千穗峽約 10 分鐘車程，日本神話「天照大神」隱身岩洞的傳說地，天安河原的疊石祈願景象氛圍靜謐，與高千穗峽神話色彩相呼應。</div>
+            <div class="t-title">巴士前往阿蘇・草千里ヶ浜</div>
+            <div class="t-desc">車程約 1 小時，沿途可欣賞阿蘇外輪山的壯闊景色。</div>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-time">17:00</div>
           <div class="timeline-content">
-            <div class="t-title">返程出發</div>
-            <div class="t-desc">山路車程較長，建議傍晚啟程返回福岡市區，途中可小憩。</div>
+            <div class="t-title">草千里ヶ浜散策</div>
+            <div class="t-desc">阿蘇火山下的遼闊草原景色，天氣許可時可自費體驗騎馬，是九州最具代表性的火山地景之一。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">21:00</div>
+          <div class="timeline-time">18:00</div>
           <div class="timeline-content">
-            <div class="t-title">抵達博多・簡單晚餐</div>
-            <div class="t-desc">回程較晚，晚餐可選飯店附近清爽好消化的選擇。</div>
+            <div class="t-title">返程出發</div>
+            <div class="t-desc">車程較長，建議在車上稍作休息，晚餐可於車上或返抵博多後解決。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">21:30</div>
+          <div class="timeline-content">
+            <div class="t-title">返抵博多阪急</div>
+            <div class="t-desc">今日行程較長，回程後建議直接返回飯店休息，為隔天的購物日儲備體力。</div>
           </div>
         </div>
 
         <div class="day-meals">
-          <div><span>早餐</span>飯店周邊或超商</div>
+          <div><span>早餐</span>超商</div>
           <div><span>午餐</span>高千穗牛・蕎麥麵</div>
-          <div><span>晚餐</span>博多站周邊簡餐</div>
+          <div><span>晚餐</span>車上或返程後自理</div>
         </div>
-        <div class="day-flag">原訂重點：高千穗划船</div>
+        <div class="day-flag">原訂重點：高千穗・草千里一日券（博多阪急 B1　08:00 集合）</div>
+      </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-block" id="day5">
+      <div class="day-num"><span class="kanji">五</span><span class="date">9/29(二)</span></div>
+      <div class="day-card">
+        <div class="day-mode">🛍️ 購物日</div>
+
+        <div class="timeline-item">
+          <div class="timeline-time">08:30</div>
+          <div class="timeline-content">
+            <div class="t-title">The Full Full 早餐</div>
+            <div class="t-desc">明太子法國麵包人氣排隊店，需事先預約，剛出爐外脆內軟。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-content">
+            <div class="t-title">唐吉訶德 Don Quijote</div>
+            <div class="t-desc">藥妝、伴手禮一次掃貨，退稅建議集中在同一店家結帳較有效率。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:00</div>
+          <div class="timeline-content">
+            <div class="t-title">午餐</div>
+            <div class="t-desc">天神周邊自由選擇，為下午的逛街行程補充體力。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">13:30</div>
+          <div class="timeline-content">
+            <div class="t-title">Mina天神</div>
+            <div class="t-desc">年輕流行品牌聚集的購物中心，逛街兼吹冷氣休息。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">15:00</div>
+          <div class="timeline-content">
+            <div class="t-title">福岡PARCO</div>
+            <div class="t-desc">流行服飾、生活雜貨與話題快閃店聚集地。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">16:30</div>
+          <div class="timeline-content">
+            <div class="t-title">天神地下街</div>
+            <div class="t-desc">歐風燈飾街景與百餘間店舖，下雨天也能舒適逛街。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:30</div>
+          <div class="timeline-content">
+            <div class="t-title">新天町</div>
+            <div class="t-desc">老字號拱廊商店街，生活雜貨與在地小店林立，適合尋寶。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">19:30</div>
+          <div class="timeline-content">
+            <div class="t-title">前往一蘭拉麵</div>
+            <div class="t-desc">預留排隊與入座時間，準備欣賞 20:00 的手打製麵表演。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-content">
+            <div class="t-title">一蘭拉麵・手打製麵表演 20:00-20:15</div>
+            <div class="t-desc">職人現場手打拉麵的表演時段，邊等位邊欣賞製麵過程，接續在此享用晚餐。</div>
+          </div>
+        </div>
+
+        <div class="day-meals">
+          <div><span>早餐</span>The Full Full（需先預約）</div>
+          <div><span>午餐</span>天神周邊自由選擇</div>
+          <div><span>晚餐</span>一蘭拉麵</div>
+        </div>
+        <div class="day-flag">唐吉訶德・Mina天神・福岡PARCO・天神地下街・新天町｜一蘭拉麵表演 20:00-20:15</div>
       </div>
     </div>
 
     <!-- DAY 6 -->
-    <div class="day-block">
+    <div class="day-block" id="day6">
       <div class="day-num"><span class="kanji">六</span><span class="date">9/30(三)</span></div>
       <div class="day-card">
         <div class="day-mode">✈️ 賦歸日</div>
@@ -741,28 +882,35 @@
           <div class="timeline-time">09:00</div>
           <div class="timeline-content">
             <div class="t-title">悠閒早餐・退房前整理行李</div>
-            <div class="t-desc">不安排遠程行程，把體力留給下午的飛行。</div>
+            <div class="t-desc">飯店退房時間為 10:00，不安排遠程行程，把體力留給下午的飛行。</div>
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">10:00</div>
+          <div class="timeline-time">09:30</div>
           <div class="timeline-content">
-            <div class="t-title">東長寺・承天寺</div>
-            <div class="t-desc">距博多站步行約 10 分鐘，日本最古老木造大佛與枯山水庭園，適合離開前的最後散步。</div>
+            <div class="t-title">真言宗 東長寺</div>
+            <div class="t-desc">距博多站步行約 10 分鐘，日本最古老木造大佛所在地，適合離開前的最後散步。</div>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:30</div>
+          <div class="timeline-content">
+            <div class="t-title">櫛田神社</div>
+            <div class="t-desc">博多祇園山笠的信仰中心與博多總鎮守，境內銀杏樹齡已逾千年。</div>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-time">11:30</div>
           <div class="timeline-content">
-            <div class="t-title">JR博多City・AMU PLAZA 最後採買</div>
-            <div class="t-desc">機場出關前的最後補貨機會，藥妝、點心禮盒都在博多站一次備齊。</div>
+            <div class="t-title">川端通商店街</div>
+            <div class="t-desc">博多最古老的商店街，拱廊全長約 400 公尺，適合買最後一波伴手禮。</div>
           </div>
         </div>
         <div class="timeline-item">
           <div class="timeline-time">13:00</div>
           <div class="timeline-content">
             <div class="t-title">午餐</div>
-            <div class="t-desc">博多站周邊解決，行李記得預留手提空間裝伴手禮。</div>
+            <div class="t-desc">川端通周邊或博多站解決，行李記得預留手提空間裝伴手禮。</div>
           </div>
         </div>
         <div class="timeline-item">
@@ -782,10 +930,10 @@
 
         <div class="day-meals">
           <div><span>早餐</span>飯店內或周邊</div>
-          <div><span>午餐</span>博多站周邊</div>
+          <div><span>午餐</span>川端通・博多站周邊</div>
           <div><span>晚餐</span>登機前於機場自理</div>
         </div>
-        <div class="day-flag">提早 3-4 小時抵達機場</div>
+        <div class="day-flag">真言宗東長寺・櫛田神社・川端通商店街｜提早 3-4 小時抵達機場</div>
       </div>
     </div>
 
@@ -866,7 +1014,8 @@
       <h3>行程專屬小物</h3>
       <ul>
         <li>高千穗划船：建議準備可稍微弄濕的鞋子或備用襪子</li>
-        <li>能古島、金鱗湖：帽子、太陽眼鏡</li>
+        <li>由布院日歸溫泉：泳裝或毛巾（視設施規定，部分需自備或加購租借）</li>
+        <li>草千里、金鱗湖：帽子、太陽眼鏡</li>
         <li>購物日：折疊式輕便購物袋、預留行李箱空間</li>
         <li>釜山轉機：隨身小包裝面紙／護唇膏，長時間候機備用</li>
         <li>環保餐具或環保杯（部分景點鼓勵自備）</li>

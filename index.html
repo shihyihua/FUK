@@ -98,6 +98,7 @@
     color:var(--washi);
     background:rgba(242,237,225,0.05);
   }
+  .hero.hidden{ display:none; }
   .hero-scroll{
     position:absolute;
     bottom:2.6rem;
@@ -1244,14 +1245,13 @@
 <script>
   const pages = document.querySelectorAll('.page');
   const navItems = document.querySelectorAll('.nav-item');
+  const hero = document.querySelector('.hero');
 
   function showPage(targetId){
     pages.forEach(p => p.classList.toggle('active', p.id === targetId));
     navItems.forEach(item => item.classList.toggle('active', item.dataset.target === targetId));
-    const nav = document.getElementById('pageNav');
-    const offset = nav ? nav.getBoundingClientRect().height + 8 : 0;
-    const y = window.pageYOffset + document.querySelector('.hero').getBoundingClientRect().bottom - offset;
-    window.scrollTo({ top: Math.max(y, 0), behavior:'smooth' });
+    hero.classList.add('hidden');
+    window.scrollTo({ top: 0, behavior:'auto' });
   }
 
   document.querySelectorAll('[data-target]').forEach(el => {

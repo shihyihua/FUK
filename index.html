@@ -324,6 +324,28 @@
     color:rgba(34,32,28,0.5);
     margin-top:.4rem;
   }
+  .flight-line{
+    display:grid;
+    grid-template-columns:120px 1fr auto;
+    gap:.6rem;
+    align-items:baseline;
+    font-size:.92rem;
+    color:rgba(34,32,28,0.75);
+    padding:.15rem 0;
+  }
+  .flight-line .fl-route{ font-weight:700; color:var(--ink); }
+  .flight-line .fl-time{ letter-spacing:.02em; }
+  .flight-line .fl-code{ color:rgba(34,32,28,0.5); font-size:.85rem; text-align:right; }
+  .hotel-note{
+    display:inline-block;
+    margin-top:.5rem;
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--kaki);
+    background:rgba(193,69,31,0.12);
+    padding:.25rem .7rem;
+    border-radius:2px;
+  }
 
   /* ---------- ITINERARY TIMELINE ---------- */
   .itinerary{
@@ -562,7 +584,7 @@
       <div class="transit-icon">🚄</div>
       <div>
         <div class="transit-title">台灣高鐵　9/24</div>
-        <div class="transit-detail">俊傑：新竹→桃園　23:27→23:38</div>
+        <div class="transit-detail">俊傑：新竹→桃園　23:12→23:23</div>
         <div class="transit-detail">羿華：臺中→桃園　22:05→22:41</div>
       </div>
     </div>
@@ -585,9 +607,9 @@
     <div class="transit-row">
       <div class="transit-icon">✈️</div>
       <div>
-        <div class="transit-title">飛機　9/25　真航空 TPE→PUS→FUK</div>
-        <div class="transit-detail">TPE→PUS　02:40-06:15（LJ752）</div>
-        <div class="transit-detail">PUS→FUK　09:00-10:00（LJ291）</div>
+        <div class="transit-title">真航空　9/25　TPE→PUS→FUK</div>
+        <div class="flight-line"><span class="fl-route">TPE　T1→PUS</span><span class="fl-time">02:40-06:15</span><span class="fl-code">LJ752</span></div>
+        <div class="flight-line"><span class="fl-route">PUS→FUK</span><span class="fl-time">09:00-10:00</span><span class="fl-code">LJ291</span></div>
         <div class="transit-note">釜山轉機僅約 2 小時 45 分，因需提領並重新託運行李，下飛機趕快去排隊入境！！！請以「不誤機」為原則，勿走遠。搭乘廉航無供餐，建議於機場先解決正餐或自備輕食。</div>
       </div>
     </div>
@@ -596,8 +618,8 @@
     <div class="transit-row">
       <div class="transit-icon">✈️</div>
       <div>
-        <div class="transit-title">飛機　9/30　台灣虎航</div>
-        <div class="transit-detail">FUK→TPE　18:55-20:25（IT721）</div>
+        <div class="transit-title">台灣虎航　9/30</div>
+        <div class="flight-line"><span class="fl-route">FUK→TPE　T1</span><span class="fl-time">18:55-20:25</span><span class="fl-code">IT721</span></div>
         <div class="transit-note">建議提早 3-4 小時抵達福岡機場，午後行程留白緩衝。此段亦為廉航無供餐，登機前請於機場內用餐或購買點心。</div>
       </div>
     </div>
@@ -632,6 +654,7 @@
         <div class="transit-title">飯店　Via Inn 博多口駅前</div>
         <div class="transit-detail">2 Chome-17-11 Hakata Ekimae, Hakata Ward, Fukuoka</div>
         <div class="transit-detail">入住 15:00　｜　退房 10:00</div>
+        <div class="hotel-note">可寄放行李，無提供早餐！</div>
       </div>
     </div>
 
@@ -1249,10 +1272,8 @@
       <span class="pack-eyebrow">CHECKED BAGGAGE</span>
       <h3>🧳 托運行李</h3>
       <ul>
-        <li>盥洗用品</li>
-        <li>保養品</li>
-        <li>化妝品（香水）</li>
-        <li>髮妝品</li>
+        <li>盥洗用品（洗卸面乳、護髮乳、髮帽、毛巾 × 2、牙膏）</li>
+        <li>化妝品/保養品（香水、止汗劑）</li>
         <li>延長線／充電線</li>
         <li>衣物 × 6</li>
         <li>內衣 × 6</li>
@@ -1260,11 +1281,9 @@
         <li>襪子 × 6</li>
         <li>睡衣</li>
         <li>替換鞋子（拖鞋）</li>
-        <li>髮帽</li>
-        <li>毛巾 × 2</li>
         <li>摺疊傘</li>
-        <li>墨鏡</li>
-        <li>項鍊</li>
+        <li>配件（墨鏡、項鍊）</li>
+        <li>隱形眼鏡</li>
         <li>肌樂</li>
         <li>美腿襪</li>
       </ul>

@@ -294,6 +294,36 @@
     padding:.25rem .7rem;
     border-radius:2px;
   }
+  .transit-subhead{
+    max-width:920px;
+    margin:2.2rem auto .8rem;
+    font-family:'Shippori Mincho',serif;
+    font-size:1.15rem;
+    color:var(--kaki);
+    letter-spacing:.1em;
+    padding-bottom:.5rem;
+    border-bottom:2px solid var(--kaki);
+  }
+  .transit-subhead:first-child{ margin-top:0; }
+  .time-chips{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.4rem;
+    margin-top:.5rem;
+  }
+  .time-chip{
+    font-size:.8rem;
+    color:rgba(34,32,28,0.75);
+    background:var(--washi-warm);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:.3rem .8rem;
+  }
+  .transit-hint{
+    font-size:.78rem;
+    color:rgba(34,32,28,0.5);
+    margin-top:.4rem;
+  }
 
   /* ---------- ITINERARY TIMELINE ---------- */
   .itinerary{
@@ -497,13 +527,11 @@
 <div class="hero">
   <span class="hero-eyebrow">KYUSHU JOURNEY</span>
   <h1>九州<span>漫遊</span></h1>
-  <p class="hero-sub">福岡 ・ 由布院 ・ 高千穗　｜　六天五夜　寬鬆慢行</p>
+  <p class="hero-sub">六天五夜　寬鬆慢行</p>
   <div class="hero-dates">
-    <div class="hero-date-chip">09/25 抵達福岡</div>
-    <div class="hero-date-chip">09/30 福岡賦歸</div>
+    <div class="hero-date-chip">9/25－9/30</div>
     <div class="hero-date-chip">住宿｜Via Inn 博多口駅前</div>
   </div>
-  <div class="hero-scroll">S C R O L L</div>
 </div>
 
 <!-- STICKY ICON NAV -->
@@ -511,7 +539,7 @@
   <div class="page-nav-inner">
     <a class="nav-item active" data-target="page-info" href="#page-info"><span class="nav-icon">📌</span>重要資訊</a>
     <a class="nav-item" data-target="page-packing" href="#page-packing"><span class="nav-icon">🎒</span>行李清單</a>
-    <a class="nav-item" data-target="page-overview" href="#page-overview"><span class="nav-icon">📋</span>行程一覽</a>
+    <a class="nav-item" data-target="page-overview" href="#page-overview"><span class="nav-icon">📋</span>行程簡介</a>
     <a class="nav-item" data-target="page-day1" href="#page-day1"><span class="nav-icon">✈️</span>9/25(五)</a>
     <a class="nav-item" data-target="page-day2" href="#page-day2"><span class="nav-icon">⛩️</span>9/26(六)</a>
     <a class="nav-item" data-target="page-day3" href="#page-day3"><span class="nav-icon">♨️</span>9/27(日)</a>
@@ -525,49 +553,88 @@
 <div class="page active" id="page-info">
 <section id="transit">
   <div class="section-head">
-    <span class="eyebrow">往返交通</span>
-    <h2>去程與回程　行前確認</h2>
+    <span class="eyebrow">重要資訊</span>
   </div>
   <div class="transit-wrap">
+
+    <div class="transit-subhead">去程</div>
     <div class="transit-row">
       <div class="transit-icon">🚄</div>
       <div>
-        <div class="transit-title">高鐵接駁（去程／回程）</div>
-        <div class="transit-detail">俊傑：9/24 新竹→桃園　｜　羿華：9/24 臺中→桃園</div>
-        <div class="transit-detail">俊傑：9/30 桃園→新竹　｜　羿華：9/30 桃園→臺中</div>
+        <div class="transit-title">台灣高鐵　9/24</div>
+        <div class="transit-detail">俊傑：新竹→桃園　23:27→23:38</div>
+        <div class="transit-detail">羿華：臺中→桃園　22:05→22:41</div>
       </div>
     </div>
     <div class="transit-row">
       <div class="transit-icon">🚇</div>
       <div>
-        <div class="transit-title">機場捷運</div>
-        <div class="transit-detail">9/24　高鐵桃園站→機場第一航廈站　23:17-23:36 或 23:34-23:53（二擇一）</div>
-        <div class="transit-detail">9/30　機場第一航廈站→高鐵桃園站　21:12-21:31 或 21:27-21:46（僅供參考）</div>
+        <div class="transit-title">桃園捷運　9/24</div>
+        <div class="transit-detail">A18 高鐵桃園站 → A12 機場第一航廈站</div>
+        <div class="time-chips">
+          <span class="time-chip">22:47-23:06</span>
+          <span class="time-chip">23:02-23:21</span>
+          <span class="time-chip">23:17-23:36</span>
+          <span class="time-chip">23:34-23:53</span>
+          <span class="time-chip">23:49-00:08</span>
+          <span class="time-chip">00:04-00:23</span>
+        </div>
+        <div class="transit-hint">以上車次擇一搭乘</div>
       </div>
     </div>
     <div class="transit-row">
       <div class="transit-icon">✈️</div>
       <div>
-        <div class="transit-title">去程　真航空 TPE→PUS→FUK</div>
-        <div class="transit-detail">9/25　TPE→PUS 02:40-06:15（LJ752）｜ PUS→FUK 09:00-10:00（LJ291）</div>
-        <div class="transit-note">釜山轉機僅約 2 小時 45 分，需提領並重新託運行李，逛免稅店請以「不誤機」為原則，鎖定 1-2 項必買小物即可，勿走遠。搭乘廉航無供餐，建議於機場先解決正餐或自備輕食。</div>
+        <div class="transit-title">飛機　9/25　真航空 TPE→PUS→FUK</div>
+        <div class="transit-detail">TPE→PUS　02:40-06:15（LJ752）</div>
+        <div class="transit-detail">PUS→FUK　09:00-10:00（LJ291）</div>
+        <div class="transit-note">釜山轉機僅約 2 小時 45 分，因需提領並重新託運行李，下飛機趕快去排隊入境！！！請以「不誤機」為原則，勿走遠。搭乘廉航無供餐，建議於機場先解決正餐或自備輕食。</div>
       </div>
     </div>
+
+    <div class="transit-subhead">回程</div>
     <div class="transit-row">
       <div class="transit-icon">✈️</div>
       <div>
-        <div class="transit-title">回程　台灣虎航 FUK→TPE</div>
-        <div class="transit-detail">9/30　FUK→TPE 18:55-20:25（IT721）</div>
+        <div class="transit-title">飛機　9/30　台灣虎航</div>
+        <div class="transit-detail">FUK→TPE　18:55-20:25（IT721）</div>
         <div class="transit-note">建議提早 3-4 小時抵達福岡機場，午後行程留白緩衝。此段亦為廉航無供餐，登機前請於機場內用餐或購買點心。</div>
       </div>
     </div>
     <div class="transit-row">
+      <div class="transit-icon">🚇</div>
+      <div>
+        <div class="transit-title">桃園捷運　9/30</div>
+        <div class="transit-detail">A12 機場第一航廈站 → A18 高鐵桃園站</div>
+        <div class="time-chips">
+          <span class="time-chip">21:42-22:01</span>
+          <span class="time-chip">21:57-22:16</span>
+          <span class="time-chip">22:13-22:31</span>
+          <span class="time-chip">22:28-22:46</span>
+          <span class="time-chip">22:43-23:01</span>
+        </div>
+        <div class="transit-hint">以上車次擇一搭乘</div>
+      </div>
+    </div>
+    <div class="transit-row">
+      <div class="transit-icon">🚄</div>
+      <div>
+        <div class="transit-title">台灣高鐵　9/30</div>
+        <div class="transit-detail">俊傑：桃園→新竹（時間待確定）</div>
+        <div class="transit-detail">羿華：桃園→臺中（時間待確定）</div>
+      </div>
+    </div>
+
+    <div class="transit-subhead">住宿</div>
+    <div class="transit-row">
       <div class="transit-icon">🏨</div>
       <div>
         <div class="transit-title">飯店　Via Inn 博多口駅前</div>
-        <div class="transit-detail">2 Chome-17-11 Hakata Ekimae, Hakata Ward, Fukuoka｜入住 15:00　｜　退房 10:00</div>
+        <div class="transit-detail">2 Chome-17-11 Hakata Ekimae, Hakata Ward, Fukuoka</div>
+        <div class="transit-detail">入住 15:00　｜　退房 10:00</div>
       </div>
     </div>
+
   </div>
 </section>
 </div>
@@ -576,9 +643,8 @@
 <!-- OVERVIEW -->
 <section id="overview">
   <div class="section-head">
-    <span class="eyebrow">簡介</span>
-    <h2>六天五夜　一覽</h2>
-    <p>先看懂全貌，再進到每天的細節。點選卡片可直接跳到當天行程。</p>
+    <span class="eyebrow">行程簡介</span>
+    <p>點選卡片可直接跳到當天行程。</p>
   </div>
   <div class="overview-grid">
     <a class="overview-card" href="#page-day1" data-target="page-day1">
@@ -619,8 +685,6 @@
 <section class="itinerary" id="itinerary-day1">
   <div class="section-head">
     <span class="eyebrow">9/25(五)</span>
-    <h2>抵達福岡・博多老街散策</h2>
-    <p>✈️ 抵達日</p>
   </div>
 
   <div class="day-track single">
@@ -695,8 +759,6 @@
 <section class="itinerary" id="itinerary-day2">
   <div class="section-head">
     <span class="eyebrow">9/26(六)</span>
-    <h2>太宰府天滿宮・福岡塔・百道濱</h2>
-    <p>🚃 電車一日</p>
   </div>
 
   <div class="day-track single">
@@ -777,8 +839,6 @@
 <section class="itinerary" id="itinerary-day3">
   <div class="section-head">
     <span class="eyebrow">9/27(日)</span>
-    <h2>由布院・日歸溫泉・金鱗湖</h2>
-    <p>🚂 特急列車（07:43 發車）</p>
   </div>
 
   <div class="day-track single">
@@ -874,8 +934,6 @@
 <section class="itinerary" id="itinerary-day4">
   <div class="section-head">
     <span class="eyebrow">9/28(一)</span>
-    <h2>高千穗・草千里（一日券）</h2>
-    <p>🚌 博多阪急 B1　08:00 集合</p>
   </div>
 
   <div class="day-track single">
@@ -978,8 +1036,6 @@
 <section class="itinerary" id="itinerary-day5">
   <div class="section-head">
     <span class="eyebrow">9/29(二)</span>
-    <h2>購物日・唐吉訶德・天神・一蘭拉麵</h2>
-    <p>🛍️ 購物日</p>
   </div>
 
   <div class="day-track single">
@@ -1075,8 +1131,6 @@
 <section class="itinerary" id="itinerary-day6">
   <div class="section-head">
     <span class="eyebrow">9/30(三)</span>
-    <h2>東長寺・櫛田神社・川端通・賦歸</h2>
-    <p>✈️ 賦歸日</p>
   </div>
 
   <div class="day-track single">
@@ -1158,9 +1212,7 @@
 <!-- PACKING LIST -->
 <section id="packing">
   <div class="section-head">
-    <span class="eyebrow">行前準備</span>
-    <h2>行李清單</h2>
-    <p>依文件整理成「隨身行李」與「托運行李」兩大類，九月底九州白天仍偏暖、早晚轉涼，且可能遇上颱風季雨勢，依此準備即可從容出發。</p>
+    <span class="eyebrow">行李清單</span>
   </div>
 
   <div class="packing-grid">

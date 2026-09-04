@@ -323,6 +323,24 @@
     border-radius:14px;
     padding:.3rem .8rem;
   }
+  .baggage-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    margin-top:.6rem;
+  }
+  .baggage-tag{
+    display:inline-flex;
+    align-items:center;
+    gap:.35rem;
+    font-size:.85rem;
+    font-weight:700;
+    color:var(--washi);
+    background:var(--kaki);
+    border-radius:6px;
+    padding:.4rem 1rem;
+    letter-spacing:.02em;
+  }
   .transit-hint{
     font-size:.78rem;
     color:rgba(34,32,28,0.5);
@@ -615,6 +633,11 @@
         <div class="flight-line"><span class="fl-route">TPE　T1→PUS</span><span class="fl-time">02:40-06:15</span><span class="fl-code">LJ752</span></div>
         <div class="flight-line"><span class="fl-route">PUS→FUK</span><span class="fl-time">09:00-10:00</span><span class="fl-code">LJ291</span></div>
         <div class="transit-note">釜山轉機僅約 2 小時 45 分，因需提領並重新託運行李，下飛機趕快去排隊入境！！！請以「不誤機」為原則，勿走遠。搭乘廉航無供餐，建議於機場先解決正餐或自備輕食。</div>
+        <div class="baggage-tags">
+          <span class="baggage-tag">🎒 手提行李 10 公斤</span>
+          <span class="baggage-tag">🧳 托運行李 15 公斤</span>
+          <span class="baggage-tag">🏷️ 購買優先托運行李</span>
+        </div>
       </div>
     </div>
 
@@ -625,6 +648,10 @@
         <div class="transit-title">台灣虎航　9/30</div>
         <div class="flight-line"><span class="fl-route">FUK→TPE　T1</span><span class="fl-time">18:55-20:25</span><span class="fl-code">IT721</span></div>
         <div class="transit-note">建議提早 3-4 小時抵達福岡機場，午後行程留白緩衝。此段亦為廉航無供餐，登機前請於機場內用餐或購買點心。</div>
+        <div class="baggage-tags">
+          <span class="baggage-tag">🎒 手提行李 10 公斤</span>
+          <span class="baggage-tag">🧳 托運行李 25 公斤</span>
+        </div>
       </div>
     </div>
     <div class="transit-row">
@@ -656,7 +683,7 @@
       <div class="transit-icon">🏨</div>
       <div>
         <div class="transit-title">Via Inn 博多口駅前</div>
-        <div class="transit-detail">2 Chome-17-11 Hakata Ekimae, Hakata Ward, Fukuoka</div>
+        <div class="transit-detail">2 Chome-17-11 Hakata Ekimae, Hakata Ward, Fukuoka, 812-0011</div>
         <div class="transit-detail">入住 15:00　｜　退房 10:00</div>
         <div class="hotel-note">可寄放行李，無提供早餐！</div>
       </div>

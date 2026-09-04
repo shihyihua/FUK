@@ -309,6 +309,19 @@
   }
   .transit-title{font-weight:700;color:var(--indigo-deep);margin-bottom:.2rem;}
   .transit-detail{color:rgba(34,32,28,0.7);font-size:.92rem;padding-left:1.4em;text-indent:-1.4em;}
+  .person-block{ margin-bottom:.7rem; }
+  .person-block:last-child{ margin-bottom:0; }
+  .person-name{
+    font-weight:700;
+    color:var(--ink);
+    font-size:.92rem;
+    margin-bottom:.15rem;
+  }
+  .person-info{
+    color:rgba(34,32,28,0.7);
+    font-size:.92rem;
+    padding-left:.9em;
+  }
   .transit-note{
     display:inline-block;
     margin-top:.5rem;
@@ -627,8 +640,14 @@
       <div class="transit-icon">🚄</div>
       <div>
         <div class="transit-title">台灣高鐵　9/24</div>
-        <div class="transit-detail">俊傑：新竹→桃園　23:27→23:38　｜　5車3E</div>
-        <div class="transit-detail">羿華：臺中→桃園　22:05→22:41　｜　4車4A</div>
+        <div class="person-block">
+          <div class="person-name">俊傑：</div>
+          <div class="person-info">新竹→桃園　23:27→23:38　｜　5車3E</div>
+        </div>
+        <div class="person-block">
+          <div class="person-name">羿華：</div>
+          <div class="person-info">臺中→桃園　22:05→22:41　｜　4車4A</div>
+        </div>
       </div>
     </div>
     <div class="transit-row">
@@ -694,8 +713,14 @@
       <div class="transit-icon">🚄</div>
       <div>
         <div class="transit-title">台灣高鐵　9/30</div>
-        <div class="transit-detail">俊傑：桃園→新竹　22:49→22:58　｜　5車4A</div>
-        <div class="transit-detail">羿華：桃園→臺中　22:49→23:29　｜　5車4E</div>
+        <div class="person-block">
+          <div class="person-name">俊傑：</div>
+          <div class="person-info">桃園→新竹　22:49→22:58　｜　5車4A</div>
+        </div>
+        <div class="person-block">
+          <div class="person-name">羿華：</div>
+          <div class="person-info">桃園→臺中　22:49→23:29　｜　5車4E</div>
+        </div>
       </div>
     </div>
 

@@ -121,13 +121,26 @@
   }
   .overview-card{
     display:block;
+    position:relative;
     text-decoration:none;
     background:var(--washi-warm);
     border:1px solid var(--line);
     border-left:3px solid var(--kaki);
     border-radius:4px;
-    padding:1.3rem 1.4rem;
+    padding:1.3rem 2.6rem 1.3rem 1.4rem;
+    box-shadow:0 2px 6px rgba(34,32,28,0.08);
     transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .overview-card::after{
+    content:"›";
+    position:absolute;
+    right:1.1rem;
+    top:50%;
+    transform:translateY(-50%);
+    font-size:1.6rem;
+    font-weight:700;
+    color:var(--kaki);
+    opacity:.6;
   }
   .overview-card:hover{
     transform:translateY(-2px);
@@ -193,12 +206,19 @@
     color:var(--washi);
     text-decoration:none;
     white-space:nowrap;
-    border:1px solid rgba(242,237,225,0.3);
-    transition:background .15s ease, color .15s ease, border-color .15s ease;
+    background:rgba(242,237,225,0.14);
+    border:1px solid rgba(242,237,225,0.35);
+    box-shadow:0 2px 0 rgba(0,0,0,0.12);
+    transition:background .15s ease, color .15s ease, border-color .15s ease, transform .1s ease, box-shadow .1s ease;
   }
   .nav-item .nav-icon{font-size:.9rem;}
   .nav-item:hover{
+    background:rgba(242,237,225,0.24);
     border-color:rgba(242,237,225,0.7);
+  }
+  .nav-item:active{
+    transform:translateY(1px);
+    box-shadow:0 1px 0 rgba(0,0,0,0.12);
   }
   .nav-item.active{
     background:var(--washi);
@@ -584,12 +604,12 @@
     <a class="nav-item active" data-target="page-info" href="#page-info"><span class="nav-icon">📌</span>重要資訊</a>
     <a class="nav-item" data-target="page-packing" href="#page-packing"><span class="nav-icon">🎒</span>行李清單</a>
     <a class="nav-item" data-target="page-overview" href="#page-overview"><span class="nav-icon">📋</span>行程簡介</a>
-    <a class="nav-item" data-target="page-day1" href="#page-day1"><span class="nav-icon">✈️</span>9/25(五)</a>
-    <a class="nav-item" data-target="page-day2" href="#page-day2"><span class="nav-icon">⛩️</span>9/26(六)</a>
-    <a class="nav-item" data-target="page-day3" href="#page-day3"><span class="nav-icon">♨️</span>9/27(日)</a>
-    <a class="nav-item" data-target="page-day4" href="#page-day4"><span class="nav-icon">🌋</span>9/28(一)</a>
-    <a class="nav-item" data-target="page-day5" href="#page-day5"><span class="nav-icon">🛍️</span>9/29(二)</a>
-    <a class="nav-item" data-target="page-day6" href="#page-day6"><span class="nav-icon">🏮</span>9/30(三)</a>
+    <a class="nav-item" data-target="page-day1" href="#page-day1">9/25(五)</a>
+    <a class="nav-item" data-target="page-day2" href="#page-day2">9/26(六)</a>
+    <a class="nav-item" data-target="page-day3" href="#page-day3">9/27(日)</a>
+    <a class="nav-item" data-target="page-day4" href="#page-day4">9/28(一)</a>
+    <a class="nav-item" data-target="page-day5" href="#page-day5">9/29(二)</a>
+    <a class="nav-item" data-target="page-day6" href="#page-day6">9/30(三)</a>
   </div>
 </nav>
 
@@ -606,8 +626,8 @@
       <div class="transit-icon">🚄</div>
       <div>
         <div class="transit-title">台灣高鐵　9/24</div>
-        <div class="transit-detail">俊傑：新竹→桃園　23:27→23:38</div>
-        <div class="transit-detail">羿華：臺中→桃園　22:05→22:41</div>
+        <div class="transit-detail">俊傑：新竹→桃園　23:27→23:38　｜　5車3E</div>
+        <div class="transit-detail">羿華：臺中→桃園　22:05→22:41　｜　4車4A</div>
       </div>
     </div>
     <div class="transit-row">
@@ -673,8 +693,8 @@
       <div class="transit-icon">🚄</div>
       <div>
         <div class="transit-title">台灣高鐵　9/30</div>
-        <div class="transit-detail">俊傑：桃園→新竹　22:49→22:58</div>
-        <div class="transit-detail">羿華：桃園→臺中　22:49→23:29</div>
+        <div class="transit-detail">俊傑：桃園→新竹　22:49→22:58　｜　5車4A</div>
+        <div class="transit-detail">羿華：桃園→臺中　22:49→23:29　｜　5車4E</div>
       </div>
     </div>
 
@@ -684,7 +704,10 @@
       <div>
         <div class="transit-title">Via Inn 博多口駅前</div>
         <div class="transit-detail">2 Chome-17-11 Hakata Ekimae, Hakata Ward, Fukuoka, 812-0011</div>
-        <div class="transit-detail">入住 15:00　｜　退房 10:00</div>
+        <div class="time-chips">
+          <span class="time-chip">入住 15:00</span>
+          <span class="time-chip">退房 10:00</span>
+        </div>
         <div class="hotel-note">可寄放行李，無提供早餐！</div>
       </div>
     </div>
@@ -1339,10 +1362,6 @@
   </div>
 </section>
 </div>
-
-<footer>
-  九州六天五夜　福岡・由布院・高千穗　｜　時間為預估參考，請依現場狀況彈性調整
-</footer>
 
 <script>
   const pages = document.querySelectorAll('.page');

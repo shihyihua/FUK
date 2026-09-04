@@ -375,6 +375,26 @@
     color:rgba(34,32,28,0.75);
     padding:.15rem 0;
   }
+  .seat-line{
+    display:flex;
+    flex-wrap:wrap;
+    align-items:baseline;
+    row-gap:.15rem;
+    column-gap:.5rem;
+    font-size:.95rem;
+    color:rgba(34,32,28,0.8);
+    padding:.2rem 0;
+  }
+  .seat-line .seat-person{ white-space:nowrap; }
+  .seat-line .seat-time{ white-space:nowrap; color:rgba(34,32,28,0.65); }
+  .seat-line .seat-num{
+    white-space:nowrap;
+    font-weight:700;
+    color:var(--kaki);
+    background:rgba(193,69,31,0.1);
+    padding:.1rem .5rem;
+    border-radius:10px;
+  }
   .flight-line .fl-route{ font-weight:700; color:var(--ink); }
   .flight-line .fl-time{ letter-spacing:.02em; }
   .flight-line .fl-code{ color:rgba(34,32,28,0.5); font-size:.85rem; text-align:right; }
@@ -626,8 +646,8 @@
       <div class="transit-icon">🚄</div>
       <div>
         <div class="transit-title">台灣高鐵　9/24</div>
-        <div class="transit-detail">俊傑：新竹→桃園　23:27→23:38　｜　5車3E</div>
-        <div class="transit-detail">羿華：臺中→桃園　22:05→22:41　｜　4車4A</div>
+        <div class="seat-line"><span class="seat-person">俊傑：新竹→桃園</span><span class="seat-time">23:27→23:38</span><span class="seat-num">5車3E</span></div>
+        <div class="seat-line"><span class="seat-person">羿華：臺中→桃園</span><span class="seat-time">22:05→22:41</span><span class="seat-num">4車4A</span></div>
       </div>
     </div>
     <div class="transit-row">
@@ -693,8 +713,8 @@
       <div class="transit-icon">🚄</div>
       <div>
         <div class="transit-title">台灣高鐵　9/30</div>
-        <div class="transit-detail">俊傑：桃園→新竹　22:49→22:58　｜　5車4A</div>
-        <div class="transit-detail">羿華：桃園→臺中　22:49→23:29　｜　5車4E</div>
+        <div class="seat-line"><span class="seat-person">俊傑：桃園→新竹</span><span class="seat-time">22:49→22:58</span><span class="seat-num">5車4A</span></div>
+        <div class="seat-line"><span class="seat-person">羿華：桃園→臺中</span><span class="seat-time">22:49→23:29</span><span class="seat-num">5車4E</span></div>
       </div>
     </div>
 

@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="format-detection" content="telephone=no, date=no, address=no, email=no">
 <title>九州遊六天五夜</title>
 <meta name="description" content="九州遊六天五夜">
 <meta property="og:title" content="九州遊六天五夜">
@@ -60,6 +61,16 @@
       repeating-linear-gradient(25deg, rgba(242,237,225,0.04) 0px, rgba(242,237,225,0.04) 1px, transparent 1px, transparent 34px);
     opacity:.5;
   }
+  .hero-leaf{
+    position:absolute;
+    width:130px;
+    height:130px;
+    fill:var(--kaki-soft);
+    opacity:.28;
+    z-index:1;
+  }
+  .hero-leaf-tl{ top:-20px; left:-20px; transform:rotate(-15deg); }
+  .hero-leaf-br{ bottom:-20px; right:-20px; transform:rotate(165deg); }
   .hero-eyebrow{
     letter-spacing:.5em;
     font-size:.72rem;
@@ -68,26 +79,54 @@
     position:relative;
     z-index:2;
   }
-  .hero h1{
-    font-size:clamp(2.6rem,7vw,5.2rem);
+  .hero-title{
+    font-size:clamp(3rem,9vw,5.5rem);
     font-weight:700;
-    letter-spacing:.08em;
+    letter-spacing:.15em;
+    margin-bottom:1.3rem;
     position:relative;
     z-index:2;
   }
-  .hero h1 span{color:var(--kaki-soft);}
+  .hero-poem{
+    font-size:clamp(1.15rem,3vw,1.5rem);
+    font-weight:600;
+    line-height:1.7;
+    letter-spacing:.08em;
+    color:var(--kaki-soft);
+    position:relative;
+    z-index:2;
+  }
   .hero-sub{
-    margin-top:1.4rem;
-    font-size:clamp(1rem,2vw,1.25rem);
-    color:rgba(242,237,225,0.82);
-    letter-spacing:.05em;
+    margin-top:1.6rem;
+    max-width:520px;
+    font-size:clamp(.9rem,1.6vw,1.05rem);
+    color:rgba(242,237,225,0.78);
+    letter-spacing:.03em;
+    line-height:1.8;
     position:relative;
     z-index:2;
   }
   .hero-dates{
-    margin-top:2.6rem;
+    margin-top:2rem;
     display:flex;
-    gap:2.2rem;
+    align-items:center;
+    gap:.7rem;
+    position:relative;
+    z-index:2;
+  }
+  .hero-date-dot{ font-size:.4rem; color:var(--kaki-soft); }
+  .hero-date-num{
+    font-family:'Noto Sans TC',sans-serif;
+    font-weight:700;
+    font-size:1.3rem;
+    letter-spacing:.1em;
+    color:var(--washi);
+  }
+  .hero-date-sep{ color:var(--kaki-soft); font-size:1.1rem; }
+  .hero-chip-row{
+    margin-top:1.8rem;
+    display:flex;
+    gap:1.2rem;
     flex-wrap:wrap;
     justify-content:center;
     position:relative;
@@ -176,7 +215,7 @@
     letter-spacing:.05em;
   }
 
-  /* ---------- STICKY NAV ---------- */
+  /* ---------- STICKY NAV (dropdown style) ---------- */
   .page-nav{
     position:sticky;
     top:0;
@@ -185,46 +224,108 @@
     border-bottom:1px solid rgba(242,237,225,0.15);
     box-shadow:0 4px 16px rgba(0,0,0,0.15);
   }
-  .page-nav-inner{
-    display:grid;
-    grid-template-columns:repeat(3, minmax(0,1fr));
-    gap:.4rem;
-    padding:.6rem .7rem;
+  .nav-toggle{
+    width:100%;
+    display:flex;
+    align-items:center;
+    gap:.6rem;
+    padding:.85rem 1.1rem;
+    background:transparent;
+    border:none;
+    color:var(--washi);
+    font-family:inherit;
+    font-size:.95rem;
+    font-weight:700;
+    letter-spacing:.03em;
+    cursor:pointer;
     max-width:640px;
     margin:0 auto;
+  }
+  .nav-toggle-icon{ font-size:1.1rem; }
+  .nav-toggle-label{ flex:1; text-align:left; }
+  .nav-chevron{
+    font-size:.9rem;
+    color:var(--kaki-soft);
+    transition:transform .2s ease;
+  }
+  .nav-toggle[aria-expanded="true"] .nav-chevron{ transform:rotate(180deg); }
+  .nav-dropdown{
+    max-height:0;
+    overflow:hidden;
+    max-width:640px;
+    margin:0 auto;
+    background:var(--washi);
+    transition:max-height .25s ease;
+  }
+  .nav-dropdown.open{
+    max-height:70vh;
+    overflow-y:auto;
+    box-shadow:0 8px 16px rgba(0,0,0,0.12);
   }
   .nav-item{
     display:flex;
     align-items:center;
-    justify-content:center;
-    gap:.35rem;
-    padding:.42rem .3rem;
-    border-radius:8px;
-    font-size:.74rem;
+    gap:.7rem;
+    padding:.8rem 1.1rem;
+    font-size:.9rem;
     font-weight:700;
     letter-spacing:.02em;
-    color:var(--washi);
+    color:var(--ink);
     text-decoration:none;
-    white-space:nowrap;
-    background:rgba(242,237,225,0.14);
-    border:1px solid rgba(242,237,225,0.35);
-    box-shadow:0 2px 0 rgba(0,0,0,0.12);
-    transition:background .15s ease, color .15s ease, border-color .15s ease, transform .1s ease, box-shadow .1s ease;
+    border-top:1px solid var(--line);
+    transition:background .12s ease;
   }
-  .nav-item .nav-icon{font-size:.9rem;}
-  .nav-item:hover{
-    background:rgba(242,237,225,0.24);
-    border-color:rgba(242,237,225,0.7);
-  }
-  .nav-item:active{
-    transform:translateY(1px);
-    box-shadow:0 1px 0 rgba(0,0,0,0.12);
-  }
+  .nav-item .nav-icon{ font-size:1.05rem; width:1.4em; text-align:center; }
+  .nav-item:hover{ background:var(--washi-warm); }
+  .nav-item:active{ background:rgba(193,69,31,0.12); }
   .nav-item.active{
-    background:var(--washi);
-    color:var(--indigo-deep);
-    border-color:var(--washi);
+    background:var(--kaki);
+    color:var(--washi);
   }
+  .nav-divider{
+    padding:.6rem 1.1rem .3rem;
+    font-size:.7rem;
+    font-weight:700;
+    letter-spacing:.2em;
+    color:rgba(34,32,28,0.4);
+    border-top:1px solid var(--line);
+  }
+  .nav-divider:first-child{ border-top:none; }
+
+  .prep-subnav{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:.6rem;
+    max-width:720px;
+    margin:0 auto 2.4rem;
+  }
+  .prep-subnav a{
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--kaki);
+    text-decoration:none;
+    border:1px solid var(--kaki);
+    border-radius:16px;
+    padding:.4rem 1rem;
+    cursor:pointer;
+  }
+  .prep-subnav a.active{
+    background:var(--kaki);
+    color:var(--washi);
+  }
+  .prep-tab{ display:none; }
+  .prep-tab.active{ display:block; animation:pageFade .3s ease; }
+  .prep-subhead{
+    max-width:1100px;
+    margin:0 auto 1.2rem;
+    padding-top:2.4rem;
+    border-top:2px solid var(--kaki);
+    font-family:'Shippori Mincho',serif;
+    font-size:1.3rem;
+    color:var(--indigo-deep);
+  }
+  .prep-subhead:first-of-type{ padding-top:0; border-top:none; }
 
   /* ---------- PAGE SWITCHING ---------- */
   .page{ display:none; }
@@ -278,6 +379,14 @@
     letter-spacing:.4em;
     margin-bottom:.9rem;
     display:block;
+  }
+  .day-weather{
+    display:inline-block;
+    font-size:1.1rem;
+    letter-spacing:0;
+    margin-left:.3rem;
+    vertical-align:middle;
+    cursor:help;
   }
   .section-head h2{
     font-size:clamp(1.7rem,3.4vw,2.4rem);
@@ -477,19 +586,66 @@
     border-top:1px dashed var(--line);
   }
   .timeline-item:first-of-type{border-top:none;}
+  .timeline-group{
+    position:relative;
+  }
+  .timeline-group::before{
+    content:"";
+    position:absolute;
+    left:5px;
+    top:12px;
+    bottom:12px;
+    width:1px;
+    background:rgba(34,32,28,0.2);
+  }
   .timeline-time{
+    position:relative;
+    padding-left:1rem;
     font-size:.85rem;
     color:var(--kaki);
     letter-spacing:.03em;
     padding-top:.1rem;
     font-weight:700;
   }
+  .timeline-time::before{
+    content:"○";
+    position:absolute;
+    left:0;
+    top:.05rem;
+    font-size:.8em;
+    color:var(--kaki);
+  }
   .timeline-content .t-title{font-weight:700;color:var(--indigo-deep);margin-bottom:.2rem;}
   .timeline-content .t-desc{color:rgba(34,32,28,0.72);font-size:.9rem;}
+  .map-link{
+    display:inline-block;
+    margin-top:.4rem;
+    font-size:.8rem;
+    color:var(--kaki);
+    text-decoration:none;
+    border-bottom:1px dashed var(--kaki);
+  }
+  .map-link:hover{ opacity:.75; }
+  .day-section-divider{
+    margin-top:2rem;
+    height:6px;
+    background:var(--kaki);
+    border-radius:3px;
+    opacity:.85;
+  }
+  .day-meals-label{
+    margin-top:1.6rem;
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--kaki);
+    letter-spacing:.1em;
+  }
   .day-meals{
-    margin-top:1.4rem;
-    padding-top:1.2rem;
-    border-top:1px solid var(--line);
+    margin-top:.8rem;
+    background:var(--washi-warm);
+    border:1px solid var(--line);
+    border-radius:8px;
+    padding:1.2rem 1.3rem;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:1rem;
@@ -574,6 +730,162 @@
     font-size:.85rem;
   }
 
+  /* ---------- PREP CHECKLIST ---------- */
+  .prep-wrap{ max-width:720px; margin:0 auto; }
+  .prep-list{ list-style:none; }
+  .prep-list li{
+    border-bottom:1px solid var(--line);
+  }
+  .prep-list li:first-child{ border-top:1px solid var(--line); }
+  .prep-list label{
+    display:flex;
+    align-items:center;
+    gap:.9rem;
+    padding:1rem .3rem;
+    cursor:pointer;
+    font-size:.98rem;
+    color:var(--ink);
+  }
+  .prep-list input[type="checkbox"]{
+    width:20px; height:20px;
+    accent-color:var(--kaki);
+    flex-shrink:0;
+  }
+  .prep-list input[type="checkbox"]:checked + span{
+    text-decoration:line-through;
+    color:rgba(34,32,28,0.4);
+  }
+
+  /* ---------- EMBEDS ---------- */
+  .link-card{
+    display:flex;
+    align-items:center;
+    gap:.9rem;
+    margin-top:.6rem;
+    padding:1rem 1.1rem;
+    background:var(--washi-warm);
+    border:1px solid var(--line);
+    border-radius:8px;
+    text-decoration:none;
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .link-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 6px 16px rgba(34,32,28,0.1);
+  }
+  .link-card-icon{ font-size:1.5rem; flex-shrink:0; }
+  .link-card-text{ display:flex; flex-direction:column; gap:.15rem; flex:1; }
+  .link-card-title{ font-weight:700; color:var(--indigo-deep); font-size:.94rem; }
+  .link-card-sub{ font-size:.78rem; color:rgba(34,32,28,0.55); }
+  .link-card-arrow{ font-size:1.3rem; color:var(--kaki); flex-shrink:0; }
+
+  /* ---------- BUDGET ---------- */
+  .budget-wrap{ max-width:720px; margin:0 auto; }
+  .budget-hero{
+    text-align:center;
+    padding:2.2rem 1.5rem;
+    background:var(--indigo-deep);
+    border-radius:6px;
+    margin-bottom:1.2rem;
+  }
+  .budget-hero-label{
+    display:block;
+    color:var(--kaki-soft);
+    font-size:.85rem;
+    letter-spacing:.2em;
+    margin-bottom:.5rem;
+  }
+  .budget-hero-amount{
+    display:block;
+    font-family:'Noto Sans TC',sans-serif;
+    font-size:2.4rem;
+    font-weight:700;
+    color:var(--washi);
+  }
+  .budget-hero-sub{
+    display:block;
+    margin-top:.6rem;
+    font-size:.8rem;
+    color:rgba(242,237,225,0.7);
+  }
+  .budget-people{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:.8rem;
+    margin-bottom:.5rem;
+  }
+  .budget-person{
+    background:var(--washi-warm);
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding:.9rem 1rem;
+    text-align:center;
+  }
+  .budget-person-name{
+    display:block;
+    font-size:.8rem;
+    color:rgba(34,32,28,0.6);
+    margin-bottom:.3rem;
+  }
+  .budget-person-amount{
+    display:block;
+    font-weight:700;
+    font-size:1.15rem;
+    color:var(--kaki);
+  }
+  .budget-hint{
+    text-align:center;
+    font-size:.78rem;
+    color:rgba(34,32,28,0.5);
+    margin-bottom:1.8rem;
+  }
+  .budget-card{
+    background:var(--washi-warm);
+    border:1px solid var(--line);
+    border-radius:4px;
+    padding:1.6rem 1.8rem;
+  }
+  .budget-card > .pack-eyebrow{ display:block; margin-bottom:1rem; }
+  .budget-list{ list-style:none; }
+  .budget-list li{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:1rem;
+    padding:.7rem 0;
+    border-bottom:1px solid var(--line);
+    font-size:.94rem;
+    color:var(--ink);
+  }
+  .budget-list li:first-child{ padding-top:0; }
+  .budget-amount{
+    font-weight:700;
+    color:var(--kaki);
+    white-space:nowrap;
+    text-align:right;
+  }
+  .budget-amount small{
+    display:block;
+    font-weight:400;
+    font-size:.72rem;
+    color:rgba(34,32,28,0.5);
+    margin-top:.1rem;
+  }
+  .budget-amount.budget-note{
+    font-weight:400;
+    color:rgba(34,32,28,0.5);
+  }
+  .budget-total{
+    display:flex;
+    justify-content:space-between;
+    padding-top:1.1rem;
+    margin-top:.6rem;
+    border-top:2px solid var(--kaki);
+    font-weight:700;
+    font-size:1.05rem;
+    color:var(--indigo-deep);
+  }
+
   /* ---------- FOOTER ---------- */
   footer{
     padding:3rem 6vw;
@@ -602,27 +914,48 @@
 
 <!-- HERO -->
 <div class="hero">
-  <span class="hero-eyebrow">KYUSHU JOURNEY</span>
-  <h1>九州<span>漫遊</span></h1>
-  <p class="hero-sub">六天五夜　寬鬆慢行</p>
+  <svg class="hero-leaf hero-leaf-tl" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50,2 C62,22 92,20 80,42 C102,42 100,64 78,72 C90,92 68,92 58,80 L50,100 L42,80 C32,92 10,92 22,72 C0,64 -2,42 20,42 C8,20 38,22 50,2 Z"/>
+  </svg>
+  <svg class="hero-leaf hero-leaf-br" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50,2 C62,22 92,20 80,42 C102,42 100,64 78,72 C90,92 68,92 58,80 L50,100 L42,80 C32,92 10,92 22,72 C0,64 -2,42 20,42 C8,20 38,22 50,2 Z"/>
+  </svg>
+  <span class="hero-eyebrow">KYUSHU AUTUMN JOURNEY</span>
+  <h1 class="hero-title">九州遊</h1>
   <div class="hero-dates">
-    <div class="hero-date-chip">9/25－9/30</div>
+    <span class="hero-date-dot">●</span>
+    <span class="hero-date-num">09.25</span>
+    <span class="hero-date-sep">・</span>
+    <span class="hero-date-num">09.30</span>
+    <span class="hero-date-dot">●</span>
+  </div>
+  <div class="hero-chip-row">
+    <div class="hero-date-chip">六天五夜　寬鬆慢行</div>
     <div class="hero-date-chip">住宿｜Via Inn 博多口駅前</div>
   </div>
 </div>
 
 <!-- STICKY ICON NAV -->
 <nav class="page-nav" id="pageNav">
-  <div class="page-nav-inner">
+  <button class="nav-toggle" id="navToggle" type="button">
+    <span class="nav-toggle-icon" id="navToggleIcon">📌</span>
+    <span class="nav-toggle-label" id="navToggleLabel">重要資訊</span>
+    <span class="nav-chevron" id="navChevron">▾</span>
+  </button>
+  <div class="nav-dropdown" id="navDropdown">
     <a class="nav-item active" data-target="page-info" href="#page-info"><span class="nav-icon">📌</span>重要資訊</a>
-    <a class="nav-item" data-target="page-packing" href="#page-packing"><span class="nav-icon">🎒</span>行李清單</a>
     <a class="nav-item" data-target="page-overview" href="#page-overview"><span class="nav-icon">📋</span>行程簡介</a>
-    <a class="nav-item" data-target="page-day1" href="#page-day1">9/25(五)</a>
-    <a class="nav-item" data-target="page-day2" href="#page-day2">9/26(六)</a>
-    <a class="nav-item" data-target="page-day3" href="#page-day3">9/27(日)</a>
-    <a class="nav-item" data-target="page-day4" href="#page-day4">9/28(一)</a>
-    <a class="nav-item" data-target="page-day5" href="#page-day5">9/29(二)</a>
-    <a class="nav-item" data-target="page-day6" href="#page-day6">9/30(三)</a>
+    <div class="nav-divider">行程表</div>
+    <a class="nav-item" data-target="page-day1" href="#page-day1"><span class="nav-icon">✈️</span>9/25(五)</a>
+    <a class="nav-item" data-target="page-day2" href="#page-day2"><span class="nav-icon">⛩️</span>9/26(六)</a>
+    <a class="nav-item" data-target="page-day3" href="#page-day3"><span class="nav-icon">♨️</span>9/27(日)</a>
+    <a class="nav-item" data-target="page-day4" href="#page-day4"><span class="nav-icon">🌋</span>9/28(一)</a>
+    <a class="nav-item" data-target="page-day5" href="#page-day5"><span class="nav-icon">🛍️</span>9/29(二)</a>
+    <a class="nav-item" data-target="page-day6" href="#page-day6"><span class="nav-icon">🏮</span>9/30(三)</a>
+    <div class="nav-divider">出發前</div>
+    <a class="nav-item" data-target="page-prep" href="#page-prep"><span class="nav-icon">✅</span>行前準備站</a>
+    <a class="nav-item" data-target="page-missions" href="#page-missions"><span class="nav-icon">🎯</span>闖關任務</a>
+    <a class="nav-item" data-target="page-souvenir" href="#page-souvenir"><span class="nav-icon">🎁</span>伴手禮清單</a>
   </div>
 </nav>
 
@@ -741,582 +1074,34 @@
 </section>
 </div>
 
-<div class="page" id="page-overview">
-<!-- OVERVIEW -->
-<section id="overview">
+<div class="page" id="page-prep">
+<section id="prep">
   <div class="section-head">
-    <span class="eyebrow">行程簡介</span>
-    <p>點選卡片可直接跳到當天行程。</p>
-  </div>
-  <div class="overview-grid">
-    <a class="overview-card" href="#page-day1" data-target="page-day1">
-      <div class="overview-top"><span class="overview-day">第一天</span><span class="overview-date">9/25(五)</span></div>
-      <div class="overview-title">抵達福岡・博多老街散策</div>
-      <div class="overview-mode">✈️ 抵達日</div>
-    </a>
-    <a class="overview-card" href="#page-day2" data-target="page-day2">
-      <div class="overview-top"><span class="overview-day">第二天</span><span class="overview-date">9/26(六)</span></div>
-      <div class="overview-title">太宰府天滿宮・福岡塔・百道濱</div>
-      <div class="overview-mode">🚃 電車一日</div>
-    </a>
-    <a class="overview-card" href="#page-day3" data-target="page-day3">
-      <div class="overview-top"><span class="overview-day">第三天</span><span class="overview-date">9/27(日)</span></div>
-      <div class="overview-title">由布院・日歸溫泉・金鱗湖</div>
-      <div class="overview-mode">🚂 特急列車（07:43 發車）</div>
-    </a>
-    <a class="overview-card" href="#page-day4" data-target="page-day4">
-      <div class="overview-top"><span class="overview-day">第四天</span><span class="overview-date">9/28(一)</span></div>
-      <div class="overview-title">高千穗・草千里（一日券）</div>
-      <div class="overview-mode">🚌 博多阪急 B1　08:00 集合</div>
-    </a>
-    <a class="overview-card" href="#page-day5" data-target="page-day5">
-      <div class="overview-top"><span class="overview-day">第五天</span><span class="overview-date">9/29(二)</span></div>
-      <div class="overview-title">購物日・唐吉訶德・天神・一蘭拉麵</div>
-      <div class="overview-mode">🛍️ 購物日</div>
-    </a>
-    <a class="overview-card" href="#page-day6" data-target="page-day6">
-      <div class="overview-top"><span class="overview-day">第六天</span><span class="overview-date">9/30(三)</span></div>
-      <div class="overview-title">東長寺・櫛田神社・川端通・賦歸</div>
-      <div class="overview-mode">✈️ 賦歸日</div>
-    </a>
-  </div>
-</section>
-</div>
-
-<div class="page" id="page-day1">
-<section class="itinerary" id="itinerary-day1">
-  <div class="section-head">
-    <span class="eyebrow">9/25(五)</span>
+    <span class="eyebrow">行前準備站</span>
   </div>
 
-  <div class="day-track single">
-
-    <div class="day-block" id="day1">
-      <div class="day-num"><span class="kanji">一</span><span class="date">9/25(五)</span></div>
-      <div class="day-card">
-        <div class="day-mode">✈️ 抵達日</div>
-
-        <div class="timeline-item">
-          <div class="timeline-time">10:00</div>
-          <div class="timeline-content">
-            <div class="t-title">福岡機場入境</div>
-            <div class="t-desc">領行李、入境審查，機場國內線航廈可搭地下鐵直達博多站，車程約 5 分鐘。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">11:30</div>
-          <div class="timeline-content">
-            <div class="t-title">Via Inn 博多口駅前 寄放行李</div>
-            <div class="t-desc">飯店就在博多站正對面，官方入住時間為 15:00，先寄放行李再輕裝出門。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">12:00</div>
-          <div class="timeline-content">
-            <div class="t-title">博多運河城 Canal City Hakata</div>
-            <div class="t-desc">午餐與初步採買熱身，逛街兼躲太陽，整點還有音樂噴泉可看。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14:30</div>
-          <div class="timeline-content">
-            <div class="t-title">博多町家老街散策</div>
-            <div class="t-desc">古民家街區與傳統町家建築，適合慢慢散步拍照，感受博多老城的生活氣息。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">16:30</div>
-          <div class="timeline-content">
-            <div class="t-title">飯店辦理入住・稍作休息</div>
-            <div class="t-desc">長途飛行後先補個眠，晚上再以最好的體力出門吃飯。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">18:30</div>
-          <div class="timeline-content">
-            <div class="t-title">長浜屋台或博多一風堂總本店</div>
-            <div class="t-desc">博多豚骨拉麵發源地，晚餐後可沿河岸散步消化。</div>
-          </div>
-        </div>
-
-        <div class="day-meals">
-          <div><span>早餐</span>釜山機場（廉航無供餐，機場自理）</div>
-          <div><span>午餐</span>運河城美食街</div>
-          <div><span>晚餐</span>博多豚骨拉麵</div>
-        </div>
-        <div class="day-flag">行李已寄放・輕裝步行為主</div>
-      </div>
-    </div>
-
+  <div class="prep-subnav">
+    <a class="prep-tab-btn active" data-preptab="prep-tab-todo" href="#">✅ 行前待辦</a>
+    <a class="prep-tab-btn" data-preptab="prep-tab-packing" href="#">🎒 行李清單</a>
+    <a class="prep-tab-btn" data-preptab="prep-tab-budget" href="#">💰 旅費總覽</a>
   </div>
 
-  <div class="day-jump-row">
-    <a class="day-jump" data-target="page-day2" href="#page-day2">下一天 →</a>
-    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
+  <div class="prep-tab active" id="prep-tab-todo">
+  <div class="prep-wrap">
+    <ul class="prep-list">
+      <li><label><input type="checkbox" data-prep="1"><span>購買 eSIM</span></label></li>
+      <li><label><input type="checkbox" data-prep="1b"><span>購買高鐵票</span></label></li>
+      <li><label><input type="checkbox" data-prep="2"><span>LINE APP 外交部領事事務局 出國登錄</span></label></li>
+      <li><label><input type="checkbox" data-prep="4"><span>LINE APP Full Full 明太子麵包預約</span></label></li>
+      <li><label><input type="checkbox" data-prep="5"><span>線上韓國入境手續</span></label></li>
+      <li><label><input type="checkbox" data-prep="6"><span>線上日本入境手續</span></label></li>
+      <li><label><input type="checkbox" data-prep="7"><span>預辦登機　LJ752／LJ291</span></label></li>
+      <li><label><input type="checkbox" data-prep="8"><span>預辦登機　IT721</span></label></li>
+    </ul>
   </div>
-</section>
-</div>
-
-<div class="page" id="page-day2">
-<section class="itinerary" id="itinerary-day2">
-  <div class="section-head">
-    <span class="eyebrow">9/26(六)</span>
-  </div>
-
-  <div class="day-track single">
-
-    <div class="day-block" id="day2">
-      <div class="day-num"><span class="kanji">二</span><span class="date">9/26(六)</span></div>
-      <div class="day-card">
-        <div class="day-mode">🚃 電車一日</div>
-
-        <div class="timeline-item">
-          <div class="timeline-time">08:30</div>
-          <div class="timeline-content">
-            <div class="t-title">The Full Full 博多店・明太子法國麵包</div>
-            <div class="t-desc">祇園町人氣排隊麵包店，距博多站步行約 10 分鐘，剛出爐外脆內軟，當作今天的早餐再出發。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">09:30</div>
-          <div class="timeline-content">
-            <div class="t-title">西鐵福岡（天神）站搭乘西鐵電車</div>
-            <div class="t-desc">往太宰府方向，約 30-40 分鐘車程，途中於西鐵二日市站轉車。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">10:30</div>
-          <div class="timeline-content">
-            <div class="t-title">太宰府天滿宮</div>
-            <div class="t-desc">日本學問之神菅原道真的總本社，參道兩旁梅枝餅店林立，可現烤現吃。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">12:30</div>
-          <div class="timeline-content">
-            <div class="t-title">參道午餐・星巴克太宰府天滿宮表參道店</div>
-            <div class="t-desc">隈研吾設計的木格柵建築，喜歡建築的話值得繞進去看看。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14:30</div>
-          <div class="timeline-content">
-            <div class="t-title">返回市區・福岡塔 Fukuoka Tower</div>
-            <div class="t-desc">臨海地標塔，展望台可俯瞰博多灣與市區全景，天氣好時視野極佳。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">16:00</div>
-          <div class="timeline-content">
-            <div class="t-title">百道海濱公園 Momochi Seaside Park</div>
-            <div class="t-desc">沙灘與海濱步道，緊鄰福岡塔，傍晚時分吹海風、看夕陽，步調放到最鬆。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">18:00</div>
-          <div class="timeline-content">
-            <div class="t-title">返回市區・晚餐</div>
-            <div class="t-desc">搭地下鐵返回天神或博多站周邊用餐，體力若還夠可安排今日的採買，也可留到第四天再逛。</div>
-          </div>
-        </div>
-
-        <div class="day-meals">
-          <div><span>早餐</span>The Full Full 明太子法國麵包</div>
-          <div><span>午餐</span>太宰府梅枝餅・參道小吃</div>
-          <div><span>晚餐</span>天神或博多站周邊自由選擇</div>
-        </div>
-      </div>
-    </div>
-
   </div>
 
-  <div class="day-jump-row">
-    <a class="day-jump" data-target="page-day1" href="#page-day1">← 上一天</a><span class="day-jump-sep">｜</span><a class="day-jump" data-target="page-day3" href="#page-day3">下一天 →</a>
-    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
-  </div>
-</section>
-</div>
-
-<div class="page" id="page-day3">
-<section class="itinerary" id="itinerary-day3">
-  <div class="section-head">
-    <span class="eyebrow">9/27(日)</span>
-  </div>
-
-  <div class="day-track single">
-
-    <div class="day-block" id="day3">
-      <div class="day-num"><span class="kanji">三</span><span class="date">9/27(日)</span></div>
-      <div class="day-card">
-        <div class="day-mode">🚂 特急列車＋日歸溫泉</div>
-
-        <div class="timeline-item">
-          <div class="timeline-time">07:43</div>
-          <div class="timeline-content">
-            <div class="t-title">博多站搭乘特急由布院之森</div>
-            <div class="t-desc">今天發車較早，車程約 2 小時 10 分，建議提前預約指定席，並提早 15 分鐘到站取票。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">09:55</div>
-          <div class="timeline-content">
-            <div class="t-title">抵達由布院站・車站周邊</div>
-            <div class="t-desc">由布院站本身即是知名建築，站內有藝廊與足湯可先體驗。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">10:20</div>
-          <div class="timeline-content">
-            <div class="t-title">金鱗湖散步</div>
-            <div class="t-desc">清晨的湖面薄霧尚未散去，此時光線最美，環湖一圈約 20 分鐘，適合放空。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">11:00</div>
-          <div class="timeline-content">
-            <div class="t-title">由布院 日歸溫泉體驗</div>
-            <div class="t-desc">挑一間有露天風呂的日歸溫泉設施泡湯放鬆，由布岳山景近在眼前，記得確認是否需自備或租借毛巾。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">13:00</div>
-          <div class="timeline-content">
-            <div class="t-title">午餐・由布院小吃或由布釜飯「心」</div>
-            <div class="t-desc">泡完湯正好覺得餓，釜飯「心」是在地人氣店家，也可沿路挑喜歡的小吃簡單解決。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14:30</div>
-          <div class="timeline-content">
-            <div class="t-title">湯之坪街道 Yunotsubo Kaido</div>
-            <div class="t-desc">兩旁伴手禮、甜點、雜貨小舖林立，邊走邊吃不趕時間，喜歡的店就多待一會。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">16:00</div>
-          <div class="timeline-content">
-            <div class="t-title">MaxValu超市採買</div>
-            <div class="t-desc">車站周邊超市，價格比土產店實惠，適合買零食飲料與回程小點心。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">16:45</div>
-          <div class="timeline-content">
-            <div class="t-title">車站周邊採買晚餐</div>
-            <div class="t-desc">出發前在由布院站購買限定便當或熱門小吃，帶上車享用當晚餐，不用再趕博多的餐廳。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">17:45</div>
-          <div class="timeline-content">
-            <div class="t-title">搭車返回博多</div>
-            <div class="t-desc">建議預留備用車次，避免逛街逛過頭錯過班次，車上邊欣賞夕陽邊享用晚餐。</div>
-          </div>
-        </div>
-
-        <div class="day-meals">
-          <div><span>早餐</span>超商</div>
-          <div><span>午餐</span>由布院小吃或由布釜飯「心」</div>
-          <div><span>晚餐</span>由布院之森便當或由布院小吃</div>
-        </div>
-        <div class="day-flag">原訂重點：由布院・日歸溫泉・金鱗湖・MaxValu超市（07:43 發車）</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="day-jump-row">
-    <a class="day-jump" data-target="page-day2" href="#page-day2">← 上一天</a><span class="day-jump-sep">｜</span><a class="day-jump" data-target="page-day4" href="#page-day4">下一天 →</a>
-    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
-  </div>
-</section>
-</div>
-
-<div class="page" id="page-day4">
-<section class="itinerary" id="itinerary-day4">
-  <div class="section-head">
-    <span class="eyebrow">9/28(一)</span>
-  </div>
-
-  <div class="day-track single">
-
-    <div class="day-block" id="day4">
-      <div class="day-num"><span class="kanji">四</span><span class="date">9/28(一)</span></div>
-      <div class="day-card">
-        <div class="day-mode">🚌 一日巴士遊</div>
-
-        <div class="timeline-item">
-          <div class="timeline-time">07:40</div>
-          <div class="timeline-content">
-            <div class="t-title">博多阪急百貨 B1 集合</div>
-            <div class="t-desc">集合時間 08:00，建議提早 20 分鐘抵達確認集合地點與領取車票。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">08:00</div>
-          <div class="timeline-content">
-            <div class="t-title">遊覽巴士出發・前往高千穗</div>
-            <div class="t-desc">山路車程約 3.5 小時，可於車上補眠，實際行駛時間依當日路況與司機安排調整。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">11:30</div>
-          <div class="timeline-content">
-            <div class="t-title">抵達高千穗・午餐</div>
-            <div class="t-desc">高千穗牛料理或蕎麥麵，補充體力準備下午行程。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">13:00</div>
-          <div class="timeline-content">
-            <div class="t-title">高千穗峽划船</div>
-            <div class="t-desc">今天最重要的行程之一，真名井瀑布近距離划船欣賞，建議提早到現場排隊租船，旺季常需候船。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14:15</div>
-          <div class="timeline-content">
-            <div class="t-title">高千穗峽步道・御橋觀景台</div>
-            <div class="t-desc">沿峽谷步道散步，從高處欣賞柱狀節理地形與瀑布全景。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">15:00</div>
-          <div class="timeline-content">
-            <div class="t-title">高千穗神社</div>
-            <div class="t-desc">神話色彩濃厚的古社，境內夫妻杉為知名景點。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">15:45</div>
-          <div class="timeline-content">
-            <div class="t-title">巴士前往阿蘇・草千里ヶ浜</div>
-            <div class="t-desc">車程約 1 小時，沿途可欣賞阿蘇外輪山的壯闊景色。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">17:00</div>
-          <div class="timeline-content">
-            <div class="t-title">草千里ヶ浜散策</div>
-            <div class="t-desc">阿蘇火山下的遼闊草原景色，天氣許可時可自費體驗騎馬，是九州最具代表性的火山地景之一。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">18:00</div>
-          <div class="timeline-content">
-            <div class="t-title">返程出發</div>
-            <div class="t-desc">車程較長，建議在車上稍作休息，晚餐可於車上或返抵博多後解決。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">21:30</div>
-          <div class="timeline-content">
-            <div class="t-title">返抵博多阪急</div>
-            <div class="t-desc">今日行程較長，回程後建議直接返回飯店休息，為隔天的購物日儲備體力。</div>
-          </div>
-        </div>
-
-        <div class="day-meals">
-          <div><span>早餐</span>超商</div>
-          <div><span>午餐</span>高千穗牛・蕎麥麵</div>
-          <div><span>晚餐</span>車上或返程後自理</div>
-        </div>
-        <div class="day-flag">原訂重點：高千穗・草千里一日券（博多阪急 B1　08:00 集合）</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="day-jump-row">
-    <a class="day-jump" data-target="page-day3" href="#page-day3">← 上一天</a><span class="day-jump-sep">｜</span><a class="day-jump" data-target="page-day5" href="#page-day5">下一天 →</a>
-    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
-  </div>
-</section>
-</div>
-
-<div class="page" id="page-day5">
-<section class="itinerary" id="itinerary-day5">
-  <div class="section-head">
-    <span class="eyebrow">9/29(二)</span>
-  </div>
-
-  <div class="day-track single">
-
-    <div class="day-block" id="day5">
-      <div class="day-num"><span class="kanji">五</span><span class="date">9/29(二)</span></div>
-      <div class="day-card">
-        <div class="day-mode">🛍️ 購物日</div>
-
-        <div class="timeline-item">
-          <div class="timeline-time">08:30</div>
-          <div class="timeline-content">
-            <div class="t-title">The Full Full 早餐</div>
-            <div class="t-desc">明太子法國麵包人氣排隊店，需事先預約，剛出爐外脆內軟。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">10:00</div>
-          <div class="timeline-content">
-            <div class="t-title">唐吉訶德 Don Quijote</div>
-            <div class="t-desc">藥妝、伴手禮一次掃貨，退稅建議集中在同一店家結帳較有效率。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">12:00</div>
-          <div class="timeline-content">
-            <div class="t-title">午餐</div>
-            <div class="t-desc">天神周邊自由選擇，為下午的逛街行程補充體力。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">13:30</div>
-          <div class="timeline-content">
-            <div class="t-title">Mina天神</div>
-            <div class="t-desc">年輕流行品牌聚集的購物中心，逛街兼吹冷氣休息。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">15:00</div>
-          <div class="timeline-content">
-            <div class="t-title">福岡PARCO</div>
-            <div class="t-desc">流行服飾、生活雜貨與話題快閃店聚集地。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">16:30</div>
-          <div class="timeline-content">
-            <div class="t-title">天神地下街</div>
-            <div class="t-desc">歐風燈飾街景與百餘間店舖，下雨天也能舒適逛街。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">17:30</div>
-          <div class="timeline-content">
-            <div class="t-title">新天町</div>
-            <div class="t-desc">老字號拱廊商店街，生活雜貨與在地小店林立，適合尋寶。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">19:30</div>
-          <div class="timeline-content">
-            <div class="t-title">前往一蘭拉麵</div>
-            <div class="t-desc">預留排隊與入座時間，準備欣賞 20:00 的手打製麵表演。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">20:00</div>
-          <div class="timeline-content">
-            <div class="t-title">一蘭拉麵・手打製麵表演 20:00-20:15</div>
-            <div class="t-desc">職人現場手打拉麵的表演時段，邊等位邊欣賞製麵過程，接續在此享用晚餐。</div>
-          </div>
-        </div>
-
-        <div class="day-meals">
-          <div><span>早餐</span>The Full Full（需先預約）</div>
-          <div><span>午餐</span>天神周邊自由選擇</div>
-          <div><span>晚餐</span>一蘭拉麵</div>
-        </div>
-        <div class="day-flag">唐吉訶德・Mina天神・福岡PARCO・天神地下街・新天町｜一蘭拉麵表演 20:00-20:15</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="day-jump-row">
-    <a class="day-jump" data-target="page-day4" href="#page-day4">← 上一天</a><span class="day-jump-sep">｜</span><a class="day-jump" data-target="page-day6" href="#page-day6">下一天 →</a>
-    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
-  </div>
-</section>
-</div>
-
-<div class="page" id="page-day6">
-<section class="itinerary" id="itinerary-day6">
-  <div class="section-head">
-    <span class="eyebrow">9/30(三)</span>
-  </div>
-
-  <div class="day-track single">
-
-    <div class="day-block" id="day6">
-      <div class="day-num"><span class="kanji">六</span><span class="date">9/30(三)</span></div>
-      <div class="day-card">
-        <div class="day-mode">✈️ 賦歸日</div>
-
-        <div class="timeline-item">
-          <div class="timeline-time">09:00</div>
-          <div class="timeline-content">
-            <div class="t-title">悠閒早餐・退房前整理行李</div>
-            <div class="t-desc">飯店退房時間為 10:00，不安排遠程行程，把體力留給下午的飛行。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">09:30</div>
-          <div class="timeline-content">
-            <div class="t-title">真言宗 東長寺</div>
-            <div class="t-desc">距博多站步行約 10 分鐘，日本最古老木造大佛所在地，適合離開前的最後散步。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">10:30</div>
-          <div class="timeline-content">
-            <div class="t-title">櫛田神社</div>
-            <div class="t-desc">博多祇園山笠的信仰中心與博多總鎮守，境內銀杏樹齡已逾千年。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">11:30</div>
-          <div class="timeline-content">
-            <div class="t-title">川端通商店街</div>
-            <div class="t-desc">博多最古老的商店街，拱廊全長約 400 公尺，適合買最後一波伴手禮。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">13:00</div>
-          <div class="timeline-content">
-            <div class="t-title">午餐</div>
-            <div class="t-desc">川端通周邊或博多站解決，行李記得預留手提空間裝伴手禮。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">14:30</div>
-          <div class="timeline-content">
-            <div class="t-title">前往福岡機場</div>
-            <div class="t-desc">地下鐵博多站直達機場國際線航廈，車程約 15 分鐘，提早 3-4 小時抵達辦理登機。</div>
-          </div>
-        </div>
-        <div class="timeline-item">
-          <div class="timeline-time">18:55</div>
-          <div class="timeline-content">
-            <div class="t-title">台灣虎航 IT721 FUK→TPE</div>
-            <div class="t-desc">20:25 抵達桃園，接續機場捷運與高鐵返家。</div>
-          </div>
-        </div>
-
-        <div class="day-meals">
-          <div><span>早餐</span>飯店內或周邊</div>
-          <div><span>午餐</span>川端通・博多站周邊</div>
-          <div><span>晚餐</span>登機前於機場自理</div>
-        </div>
-        <div class="day-flag">真言宗東長寺・櫛田神社・川端通商店街｜提早 3-4 小時抵達機場</div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="day-jump-row">
-    <a class="day-jump" data-target="page-day5" href="#page-day5">← 上一天</a>
-    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
-  </div>
-</section>
-</div>
-
-<div class="page" id="page-packing">
-<!-- PACKING LIST -->
-<section id="packing">
-  <div class="section-head">
-    <span class="eyebrow">行李清單</span>
-  </div>
-
+  <div class="prep-tab" id="prep-tab-packing">
   <div class="packing-grid">
 
     <div class="pack-card">
@@ -1333,6 +1118,7 @@
         <li>飲料提袋</li>
         <li>御朱印帳</li>
         <li>旅行袋 × 2</li>
+        <li>保冷袋</li>
         <li>耳機</li>
         <li>相機</li>
         <li>行李秤</li>
@@ -1385,6 +1171,811 @@
     </div>
 
   </div>
+  </div>
+
+  <div class="prep-tab" id="prep-tab-budget">
+  <div class="budget-wrap">
+
+    <div class="budget-hero">
+      <span class="budget-hero-label">平均每人花費</span>
+      <span class="budget-hero-amount">TWD 40,976</span>
+      <span class="budget-hero-sub">共同費用兩人平均分攤，不含 Suica 儲值與日幣兌換</span>
+    </div>
+
+    <div class="budget-people">
+      <div class="budget-person">
+        <span class="budget-person-name">俊傑</span>
+        <span class="budget-person-amount">TWD 40,614</span>
+      </div>
+      <div class="budget-person">
+        <span class="budget-person-name">羿華</span>
+        <span class="budget-person-amount">TWD 41,338</span>
+      </div>
+    </div>
+    <p class="budget-hint">兩人實際金額略有差異，主要來自高鐵、台鐵車票價格不同</p>
+
+    <div class="budget-card">
+      <span class="pack-eyebrow">明細（共同費用已標示平均／人）</span>
+      <ul class="budget-list">
+        <li><span>機＋酒＋保險（2人）</span><span class="budget-amount">TWD 71,019<small>平均 35,510／人</small></span></li>
+        <li><span>高鐵　俊傑</span><span class="budget-amount">TWD 210</span></li>
+        <li><span>高鐵　羿華</span><span class="budget-amount">TWD 890</span></li>
+        <li><span>捷運　俊傑</span><span class="budget-amount">TWD 70</span></li>
+        <li><span>捷運　羿華</span><span class="budget-amount">TWD 70</span></li>
+        <li><span>台鐵　羿華</span><span class="budget-amount">TWD 44</span></li>
+        <li><span>eSIM（2人）</span><span class="budget-amount">TWD 777<small>平均 389／人</small></span></li>
+        <li><span>由布院之森 JR（2人）</span><span class="budget-amount">TWD 4,711<small>平均 2,356／人</small></span></li>
+        <li><span>草千里・高千穗一日券（2人）</span><span class="budget-amount">TWD 4,160<small>平均 2,080／人</small></span></li>
+        <li><span>錢包 APP Suica 卡儲值</span><span class="budget-amount budget-note">依個人需求</span></li>
+        <li><span>日幣兌換</span><span class="budget-amount budget-note">依個人需求</span></li>
+      </ul>
+      <div class="budget-total"><span>小計（不含依個人需求項目）</span><span>TWD 81,951</span></div>
+    </div>
+  </div>
+  </div>
+
+</section>
+</div>
+
+<div class="page" id="page-overview">
+<!-- OVERVIEW -->
+<section id="overview">
+  <div class="section-head">
+    <span class="eyebrow">行程簡介</span>
+    <p>點選卡片可直接跳到當天行程。</p>
+  </div>
+  <div class="overview-grid">
+    <a class="overview-card" href="#page-day1" data-target="page-day1">
+      <div class="overview-top"><span class="overview-day">第一天</span><span class="overview-date">9/25(五)</span></div>
+      <div class="overview-title">抵達福岡・博多老街散策</div>
+      <div class="overview-mode">✈️ 抵達日</div>
+    </a>
+    <a class="overview-card" href="#page-day2" data-target="page-day2">
+      <div class="overview-top"><span class="overview-day">第二天</span><span class="overview-date">9/26(六)</span></div>
+      <div class="overview-title">太宰府天滿宮・福岡塔・百道濱</div>
+      <div class="overview-mode">🚃 電車一日</div>
+    </a>
+    <a class="overview-card" href="#page-day3" data-target="page-day3">
+      <div class="overview-top"><span class="overview-day">第三天</span><span class="overview-date">9/27(日)</span></div>
+      <div class="overview-title">由布院・日歸溫泉・金鱗湖</div>
+      <div class="overview-mode">🚂 特急列車（07:43 發車）</div>
+    </a>
+    <a class="overview-card" href="#page-day4" data-target="page-day4">
+      <div class="overview-top"><span class="overview-day">第四天</span><span class="overview-date">9/28(一)</span></div>
+      <div class="overview-title">高千穗・草千里（一日券）</div>
+      <div class="overview-mode">🚌 博多阪急 B1　08:00 集合</div>
+    </a>
+    <a class="overview-card" href="#page-day5" data-target="page-day5">
+      <div class="overview-top"><span class="overview-day">第五天</span><span class="overview-date">9/29(二)</span></div>
+      <div class="overview-title">購物日・唐吉訶德・天神・一蘭拉麵</div>
+      <div class="overview-mode">🛍️ 購物日</div>
+    </a>
+    <a class="overview-card" href="#page-day6" data-target="page-day6">
+      <div class="overview-top"><span class="overview-day">第六天</span><span class="overview-date">9/30(三)</span></div>
+      <div class="overview-title">東長寺・櫛田神社・川端通・賦歸</div>
+      <div class="overview-mode">✈️ 賦歸日</div>
+    </a>
+  </div>
+</section>
+</div>
+
+<div class="page" id="page-day1">
+<section class="itinerary" id="itinerary-day1">
+  <div class="section-head">
+    <span class="eyebrow">9/25(五) <span class="day-weather" title="示意天氣，實際請查詢最新預報">☀️</span></span>
+  </div>
+
+  <div class="day-track single">
+
+    <div class="day-block" id="day1">
+      <div class="day-num"><span class="kanji">一</span><span class="date">9/25(五)</span></div>
+      <div class="day-card">
+        <div class="day-mode">✈️ 抵達日</div>
+        <div class="timeline-group">
+        <div class="timeline-item">
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-content">
+            <div class="t-title">福岡機場入境</div>
+            <div class="t-desc">領行李、入境審查，機場國內線航廈可搭地下鐵直達博多站，車程約 5 分鐘。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1%E6%A9%9F%E5%A0%B4%E5%85%A5%E5%A2%83" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:30</div>
+          <div class="timeline-content">
+            <div class="t-title">Via Inn 博多口駅前 寄放行李</div>
+            <div class="t-desc">飯店就在博多站正對面，官方入住時間為 15:00，先寄放行李再輕裝出門。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Via%20Inn%20%E5%8D%9A%E5%A4%9A%E5%8F%A3%E9%A7%85%E5%89%8D%20%E5%AF%84%E6%94%BE%E8%A1%8C%E6%9D%8E" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:00</div>
+          <div class="timeline-content">
+            <div class="t-title">博多運河城 Canal City Hakata</div>
+            <div class="t-desc">午餐與初步採買熱身，逛街兼躲太陽，整點還有音樂噴泉可看。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E9%81%8B%E6%B2%B3%E5%9F%8E%20Canal%20City%20Hakata" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-content">
+            <div class="t-title">博多町家老街散策</div>
+            <div class="t-desc">古民家街區與傳統町家建築，適合慢慢散步拍照，感受博多老城的生活氣息。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E7%94%BA%E5%AE%B6%E8%80%81%E8%A1%97%E6%95%A3%E7%AD%96" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">16:30</div>
+          <div class="timeline-content">
+            <div class="t-title">飯店辦理入住・稍作休息</div>
+            <div class="t-desc">長途飛行後先補個眠，晚上再以最好的體力出門吃飯。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E9%A3%AF%E5%BA%97%E8%BE%A6%E7%90%86%E5%85%A5%E4%BD%8F%E3%83%BB%E7%A8%8D%E4%BD%9C%E4%BC%91%E6%81%AF" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">18:30</div>
+          <div class="timeline-content">
+            <div class="t-title">長浜屋台或博多一風堂總本店</div>
+            <div class="t-desc">博多豚骨拉麵發源地，晚餐後可沿河岸散步消化。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E9%95%B7%E6%B5%9C%E5%B1%8B%E5%8F%B0%E6%88%96%E5%8D%9A%E5%A4%9A%E4%B8%80%E9%A2%A8%E5%A0%82%E7%B8%BD%E6%9C%AC%E5%BA%97" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+
+        </div>
+        <div class="day-section-divider"></div>
+        <div class="day-meals-label">🍽️ 今日餐食</div>
+        <div class="day-meals">
+          <div><span>早餐</span>釜山機場（廉航無供餐，機場自理）</div>
+          <div><span>午餐</span>運河城美食街</div>
+          <div><span>晚餐</span>博多豚骨拉麵</div>
+        </div>
+        <div class="day-flag">行李已寄放・輕裝步行為主</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="day-jump-row">
+    <a class="day-jump" data-target="page-day2" href="#page-day2">下一天 →</a>
+    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
+  </div>
+</section>
+</div>
+
+<div class="page" id="page-day2">
+<section class="itinerary" id="itinerary-day2">
+  <div class="section-head">
+    <span class="eyebrow">9/26(六) <span class="day-weather" title="示意天氣，實際請查詢最新預報">🌤️</span></span>
+  </div>
+
+  <div class="day-track single">
+
+    <div class="day-block" id="day2">
+      <div class="day-num"><span class="kanji">二</span><span class="date">9/26(六)</span></div>
+      <div class="day-card">
+        <div class="day-mode">🚃 電車一日</div>
+        <div class="timeline-group">
+        <div class="timeline-item">
+          <div class="timeline-time">08:30</div>
+          <div class="timeline-content">
+            <div class="t-title">The Full Full 博多店・明太子法國麵包</div>
+            <div class="t-desc">祇園町人氣排隊麵包店，距博多站步行約 10 分鐘，剛出爐外脆內軟，當作今天的早餐再出發。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=The%20Full%20Full%20%E5%8D%9A%E5%A4%9A%E5%BA%97%E3%83%BB%E6%98%8E%E5%A4%AA%E5%AD%90%E6%B3%95%E5%9C%8B%E9%BA%B5%E5%8C%85" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">09:30</div>
+          <div class="timeline-content">
+            <div class="t-title">西鐵福岡（天神）站搭乘西鐵電車</div>
+            <div class="t-desc">往太宰府方向，約 30-40 分鐘車程，途中於西鐵二日市站轉車。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E8%A5%BF%E9%90%B5%E7%A6%8F%E5%B2%A1%EF%BC%88%E5%A4%A9%E7%A5%9E%EF%BC%89%E7%AB%99%E6%90%AD%E4%B9%98%E8%A5%BF%E9%90%B5%E9%9B%BB%E8%BB%8A" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:30</div>
+          <div class="timeline-content">
+            <div class="t-title">太宰府天滿宮</div>
+            <div class="t-desc">日本學問之神菅原道真的總本社，參道兩旁梅枝餅店林立，可現烤現吃。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BB%BF%E5%AE%AE" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:30</div>
+          <div class="timeline-content">
+            <div class="t-title">參道午餐・星巴克太宰府天滿宮表參道店</div>
+            <div class="t-desc">隈研吾設計的木格柵建築，喜歡建築的話值得繞進去看看。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8F%83%E9%81%93%E5%8D%88%E9%A4%90%E3%83%BB%E6%98%9F%E5%B7%B4%E5%85%8B%E5%A4%AA%E5%AE%B0%E5%BA%9C%E5%A4%A9%E6%BB%BF%E5%AE%AE%E8%A1%A8%E5%8F%83%E9%81%93%E5%BA%97" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-content">
+            <div class="t-title">返回市區・福岡塔 Fukuoka Tower</div>
+            <div class="t-desc">臨海地標塔，展望台可俯瞰博多灣與市區全景，天氣好時視野極佳。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E8%BF%94%E5%9B%9E%E5%B8%82%E5%8D%80%E3%83%BB%E7%A6%8F%E5%B2%A1%E5%A1%94%20Fukuoka%20Tower" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">16:00</div>
+          <div class="timeline-content">
+            <div class="t-title">百道海濱公園 Momochi Seaside Park</div>
+            <div class="t-desc">沙灘與海濱步道，緊鄰福岡塔，傍晚時分吹海風、看夕陽，步調放到最鬆。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E7%99%BE%E9%81%93%E6%B5%B7%E6%BF%B1%E5%85%AC%E5%9C%92%20Momochi%20Seaside%20Park" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">18:00</div>
+          <div class="timeline-content">
+            <div class="t-title">返回市區・晚餐</div>
+            <div class="t-desc">搭地下鐵返回天神或博多站周邊用餐，體力若還夠可安排今日的採買，也可留到第四天再逛。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E8%BF%94%E5%9B%9E%E5%B8%82%E5%8D%80%E3%83%BB%E6%99%9A%E9%A4%90" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+
+        </div>
+        <div class="day-section-divider"></div>
+        <div class="day-meals-label">🍽️ 今日餐食</div>
+        <div class="day-meals">
+          <div><span>早餐</span>The Full Full 明太子法國麵包</div>
+          <div><span>午餐</span>太宰府梅枝餅・參道小吃</div>
+          <div><span>晚餐</span>天神或博多站周邊自由選擇</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="day-jump-row">
+    <a class="day-jump" data-target="page-day1" href="#page-day1">← 上一天</a><span class="day-jump-sep">｜</span><a class="day-jump" data-target="page-day3" href="#page-day3">下一天 →</a>
+    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
+  </div>
+</section>
+</div>
+
+<div class="page" id="page-day3">
+<section class="itinerary" id="itinerary-day3">
+  <div class="section-head">
+    <span class="eyebrow">9/27(日) <span class="day-weather" title="示意天氣，實際請查詢最新預報">🌥️</span></span>
+  </div>
+
+  <div class="day-track single">
+
+    <div class="day-block" id="day3">
+      <div class="day-num"><span class="kanji">三</span><span class="date">9/27(日)</span></div>
+      <div class="day-card">
+        <div class="day-mode">🚂 特急列車＋日歸溫泉</div>
+        <div class="timeline-group">
+        <div class="timeline-item">
+          <div class="timeline-time">07:43</div>
+          <div class="timeline-content">
+            <div class="t-title">博多站搭乘特急由布院之森</div>
+            <div class="t-desc">今天發車較早，車程約 2 小時 10 分，建議提前預約指定席，並提早 15 分鐘到站取票。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E7%AB%99%E6%90%AD%E4%B9%98%E7%89%B9%E6%80%A5%E7%94%B1%E5%B8%83%E9%99%A2%E4%B9%8B%E6%A3%AE" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">09:55</div>
+          <div class="timeline-content">
+            <div class="t-title">抵達由布院站・車站周邊</div>
+            <div class="t-desc">由布院站本身即是知名建築，站內有藝廊與足湯可先體驗。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%8A%B5%E9%81%94%E7%94%B1%E5%B8%83%E9%99%A2%E7%AB%99%E3%83%BB%E8%BB%8A%E7%AB%99%E5%91%A8%E9%82%8A" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:20</div>
+          <div class="timeline-content">
+            <div class="t-title">金鱗湖散步</div>
+            <div class="t-desc">清晨的湖面薄霧尚未散去，此時光線最美，環湖一圈約 20 分鐘，適合放空。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E9%87%91%E9%B1%97%E6%B9%96%E6%95%A3%E6%AD%A5" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:00</div>
+          <div class="timeline-content">
+            <div class="t-title">由布院 日歸溫泉體驗</div>
+            <div class="t-desc">挑一間有露天風呂的日歸溫泉設施泡湯放鬆，由布岳山景近在眼前，記得確認是否需自備或租借毛巾。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E7%94%B1%E5%B8%83%E9%99%A2%20%E6%97%A5%E6%AD%B8%E6%BA%AB%E6%B3%89%E9%AB%94%E9%A9%97" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">13:00</div>
+          <div class="timeline-content">
+            <div class="t-title">午餐・由布院小吃或由布釜飯「心」</div>
+            <div class="t-desc">泡完湯正好覺得餓，釜飯「心」是在地人氣店家，也可沿路挑喜歡的小吃簡單解決。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%88%E9%A4%90%E3%83%BB%E7%94%B1%E5%B8%83%E9%99%A2%E5%B0%8F%E5%90%83%E6%88%96%E7%94%B1%E5%B8%83%E9%87%9C%E9%A3%AF%E3%80%8C%E5%BF%83%E3%80%8D" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-content">
+            <div class="t-title">湯之坪街道 Yunotsubo Kaido</div>
+            <div class="t-desc">兩旁伴手禮、甜點、雜貨小舖林立，邊走邊吃不趕時間，喜歡的店就多待一會。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%B9%AF%E4%B9%8B%E5%9D%AA%E8%A1%97%E9%81%93%20Yunotsubo%20Kaido" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">16:00</div>
+          <div class="timeline-content">
+            <div class="t-title">MaxValu超市採買</div>
+            <div class="t-desc">車站周邊超市，價格比土產店實惠，適合買零食飲料與回程小點心。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=MaxValu%E8%B6%85%E5%B8%82%E6%8E%A1%E8%B2%B7" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">16:45</div>
+          <div class="timeline-content">
+            <div class="t-title">車站周邊採買晚餐</div>
+            <div class="t-desc">出發前在由布院站購買限定便當或熱門小吃，帶上車享用當晚餐，不用再趕博多的餐廳。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E8%BB%8A%E7%AB%99%E5%91%A8%E9%82%8A%E6%8E%A1%E8%B2%B7%E6%99%9A%E9%A4%90" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:45</div>
+          <div class="timeline-content">
+            <div class="t-title">搭車返回博多</div>
+            <div class="t-desc">建議預留備用車次，避免逛街逛過頭錯過班次，車上邊欣賞夕陽邊享用晚餐。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%90%AD%E8%BB%8A%E8%BF%94%E5%9B%9E%E5%8D%9A%E5%A4%9A" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+
+        </div>
+        <div class="day-section-divider"></div>
+        <div class="day-meals-label">🍽️ 今日餐食</div>
+        <div class="day-meals">
+          <div><span>早餐</span>超商</div>
+          <div><span>午餐</span>由布院小吃或由布釜飯「心」</div>
+          <div><span>晚餐</span>由布院之森便當或由布院小吃</div>
+        </div>
+        <div class="day-flag">原訂重點：由布院・日歸溫泉・金鱗湖・MaxValu超市（07:43 發車）</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="day-jump-row">
+    <a class="day-jump" data-target="page-day2" href="#page-day2">← 上一天</a><span class="day-jump-sep">｜</span><a class="day-jump" data-target="page-day4" href="#page-day4">下一天 →</a>
+    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
+  </div>
+</section>
+</div>
+
+<div class="page" id="page-day4">
+<section class="itinerary" id="itinerary-day4">
+  <div class="section-head">
+    <span class="eyebrow">9/28(一) <span class="day-weather" title="示意天氣，實際請查詢最新預報">⛅</span></span>
+  </div>
+
+  <div class="day-track single">
+
+    <div class="day-block" id="day4">
+      <div class="day-num"><span class="kanji">四</span><span class="date">9/28(一)</span></div>
+      <div class="day-card">
+        <div class="day-mode">🚌 一日巴士遊</div>
+        <div class="timeline-group">
+        <div class="timeline-item">
+          <div class="timeline-time">07:40</div>
+          <div class="timeline-content">
+            <div class="t-title">博多阪急百貨 B1 集合</div>
+            <div class="t-desc">集合時間 08:00，建議提早 20 分鐘抵達確認集合地點與領取車票。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%9A%E5%A4%9A%E9%98%AA%E6%80%A5%E7%99%BE%E8%B2%A8%20B1%20%E9%9B%86%E5%90%88" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">08:00</div>
+          <div class="timeline-content">
+            <div class="t-title">遊覽巴士出發・前往高千穗</div>
+            <div class="t-desc">山路車程約 3.5 小時，可於車上補眠，實際行駛時間依當日路況與司機安排調整。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E9%81%8A%E8%A6%BD%E5%B7%B4%E5%A3%AB%E5%87%BA%E7%99%BC%E3%83%BB%E5%89%8D%E5%BE%80%E9%AB%98%E5%8D%83%E7%A9%97" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:30</div>
+          <div class="timeline-content">
+            <div class="t-title">抵達高千穗・午餐</div>
+            <div class="t-desc">高千穗牛料理或蕎麥麵，補充體力準備下午行程。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%8A%B5%E9%81%94%E9%AB%98%E5%8D%83%E7%A9%97%E3%83%BB%E5%8D%88%E9%A4%90" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">13:00</div>
+          <div class="timeline-content">
+            <div class="t-title">高千穗峽划船</div>
+            <div class="t-desc">今天最重要的行程之一，真名井瀑布近距離划船欣賞，建議提早到現場排隊租船，旺季常需候船。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%8D%83%E7%A9%97%E5%B3%BD%E5%88%92%E8%88%B9" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">14:15</div>
+          <div class="timeline-content">
+            <div class="t-title">高千穗峽步道・御橋觀景台</div>
+            <div class="t-desc">沿峽谷步道散步，從高處欣賞柱狀節理地形與瀑布全景。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%8D%83%E7%A9%97%E5%B3%BD%E6%AD%A5%E9%81%93%E3%83%BB%E5%BE%A1%E6%A9%8B%E8%A7%80%E6%99%AF%E5%8F%B0" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">15:00</div>
+          <div class="timeline-content">
+            <div class="t-title">高千穗神社</div>
+            <div class="t-desc">神話色彩濃厚的古社，境內夫妻杉為知名景點。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E9%AB%98%E5%8D%83%E7%A9%97%E7%A5%9E%E7%A4%BE" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">15:45</div>
+          <div class="timeline-content">
+            <div class="t-title">巴士前往阿蘇・草千里ヶ浜</div>
+            <div class="t-desc">車程約 1 小時，沿途可欣賞阿蘇外輪山的壯闊景色。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%B7%B4%E5%A3%AB%E5%89%8D%E5%BE%80%E9%98%BF%E8%98%87%E3%83%BB%E8%8D%89%E5%8D%83%E9%87%8C%E3%83%B6%E6%B5%9C" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:00</div>
+          <div class="timeline-content">
+            <div class="t-title">草千里ヶ浜散策</div>
+            <div class="t-desc">阿蘇火山下的遼闊草原景色，天氣許可時可自費體驗騎馬，是九州最具代表性的火山地景之一。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E8%8D%89%E5%8D%83%E9%87%8C%E3%83%B6%E6%B5%9C%E6%95%A3%E7%AD%96" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">18:00</div>
+          <div class="timeline-content">
+            <div class="t-title">返程出發</div>
+            <div class="t-desc">車程較長，建議在車上稍作休息，晚餐可於車上或返抵博多後解決。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E8%BF%94%E7%A8%8B%E5%87%BA%E7%99%BC" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">21:30</div>
+          <div class="timeline-content">
+            <div class="t-title">返抵博多阪急</div>
+            <div class="t-desc">今日行程較長，回程後建議直接返回飯店休息，為隔天的購物日儲備體力。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E8%BF%94%E6%8A%B5%E5%8D%9A%E5%A4%9A%E9%98%AA%E6%80%A5" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+
+        </div>
+        <div class="day-section-divider"></div>
+        <div class="day-meals-label">🍽️ 今日餐食</div>
+        <div class="day-meals">
+          <div><span>早餐</span>超商</div>
+          <div><span>午餐</span>高千穗牛・蕎麥麵</div>
+          <div><span>晚餐</span>車上或返程後自理</div>
+        </div>
+        <div class="day-flag">原訂重點：高千穗・草千里一日券（博多阪急 B1　08:00 集合）</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="day-jump-row">
+    <a class="day-jump" data-target="page-day3" href="#page-day3">← 上一天</a><span class="day-jump-sep">｜</span><a class="day-jump" data-target="page-day5" href="#page-day5">下一天 →</a>
+    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
+  </div>
+</section>
+</div>
+
+<div class="page" id="page-day5">
+<section class="itinerary" id="itinerary-day5">
+  <div class="section-head">
+    <span class="eyebrow">9/29(二) <span class="day-weather" title="示意天氣，實際請查詢最新預報">🌦️</span></span>
+  </div>
+
+  <div class="day-track single">
+
+    <div class="day-block" id="day5">
+      <div class="day-num"><span class="kanji">五</span><span class="date">9/29(二)</span></div>
+      <div class="day-card">
+        <div class="day-mode">🛍️ 購物日</div>
+        <div class="timeline-group">
+        <div class="timeline-item">
+          <div class="timeline-time">08:30</div>
+          <div class="timeline-content">
+            <div class="t-title">The Full Full 早餐</div>
+            <div class="t-desc">明太子法國麵包人氣排隊店，需事先預約，剛出爐外脆內軟。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=The%20Full%20Full%20%E6%97%A9%E9%A4%90" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:00</div>
+          <div class="timeline-content">
+            <div class="t-title">唐吉訶德 Don Quijote</div>
+            <div class="t-desc">藥妝、伴手禮一次掃貨，退稅建議集中在同一店家結帳較有效率。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%94%90%E5%90%89%E8%A8%B6%E5%BE%B7%20Don%20Quijote" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">12:00</div>
+          <div class="timeline-content">
+            <div class="t-title">午餐</div>
+            <div class="t-desc">天神周邊自由選擇，為下午的逛街行程補充體力。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%88%E9%A4%90" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">13:30</div>
+          <div class="timeline-content">
+            <div class="t-title">Mina天神</div>
+            <div class="t-desc">年輕流行品牌聚集的購物中心，逛街兼吹冷氣休息。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=Mina%E5%A4%A9%E7%A5%9E" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">15:00</div>
+          <div class="timeline-content">
+            <div class="t-title">福岡PARCO</div>
+            <div class="t-desc">流行服飾、生活雜貨與話題快閃店聚集地。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E7%A6%8F%E5%B2%A1PARCO" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">16:30</div>
+          <div class="timeline-content">
+            <div class="t-title">天神地下街</div>
+            <div class="t-desc">歐風燈飾街景與百餘間店舖，下雨天也能舒適逛街。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%A4%A9%E7%A5%9E%E5%9C%B0%E4%B8%8B%E8%A1%97" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">17:30</div>
+          <div class="timeline-content">
+            <div class="t-title">新天町</div>
+            <div class="t-desc">老字號拱廊商店街，生活雜貨與在地小店林立，適合尋寶。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E5%A4%A9%E7%94%BA" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">19:30</div>
+          <div class="timeline-content">
+            <div class="t-title">前往一蘭拉麵</div>
+            <div class="t-desc">預留排隊與入座時間，準備欣賞 20:00 的手打製麵表演。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%89%8D%E5%BE%80%E4%B8%80%E8%98%AD%E6%8B%89%E9%BA%B5" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">20:00</div>
+          <div class="timeline-content">
+            <div class="t-title">一蘭拉麵・手打製麵表演 20:00-20:15</div>
+            <div class="t-desc">職人現場手打拉麵的表演時段，邊等位邊欣賞製麵過程，接續在此享用晚餐。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E4%B8%80%E8%98%AD%E6%8B%89%E9%BA%B5%E3%83%BB%E6%89%8B%E6%89%93%E8%A3%BD%E9%BA%B5%E8%A1%A8%E6%BC%94%2020%3A00-20%3A15" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+
+        </div>
+        <div class="day-section-divider"></div>
+        <div class="day-meals-label">🍽️ 今日餐食</div>
+        <div class="day-meals">
+          <div><span>早餐</span>The Full Full（需先預約）</div>
+          <div><span>午餐</span>天神周邊自由選擇</div>
+          <div><span>晚餐</span>一蘭拉麵</div>
+        </div>
+        <div class="day-flag">唐吉訶德・Mina天神・福岡PARCO・天神地下街・新天町｜一蘭拉麵表演 20:00-20:15</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="day-jump-row">
+    <a class="day-jump" data-target="page-day4" href="#page-day4">← 上一天</a><span class="day-jump-sep">｜</span><a class="day-jump" data-target="page-day6" href="#page-day6">下一天 →</a>
+    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
+  </div>
+</section>
+</div>
+
+<div class="page" id="page-day6">
+<section class="itinerary" id="itinerary-day6">
+  <div class="section-head">
+    <span class="eyebrow">9/30(三) <span class="day-weather" title="示意天氣，實際請查詢最新預報">☀️</span></span>
+  </div>
+
+  <div class="day-track single">
+
+    <div class="day-block" id="day6">
+      <div class="day-num"><span class="kanji">六</span><span class="date">9/30(三)</span></div>
+      <div class="day-card">
+        <div class="day-mode">✈️ 賦歸日</div>
+        <div class="timeline-group">
+        <div class="timeline-item">
+          <div class="timeline-time">09:00</div>
+          <div class="timeline-content">
+            <div class="t-title">悠閒早餐・退房前整理行李</div>
+            <div class="t-desc">飯店退房時間為 10:00，不安排遠程行程，把體力留給下午的飛行。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%82%A0%E9%96%92%E6%97%A9%E9%A4%90%E3%83%BB%E9%80%80%E6%88%BF%E5%89%8D%E6%95%B4%E7%90%86%E8%A1%8C%E6%9D%8E" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">09:30</div>
+          <div class="timeline-content">
+            <div class="t-title">真言宗 東長寺</div>
+            <div class="t-desc">距博多站步行約 10 分鐘，日本最古老木造大佛所在地，適合離開前的最後散步。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E7%9C%9F%E8%A8%80%E5%AE%97%20%E6%9D%B1%E9%95%B7%E5%AF%BA" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">10:30</div>
+          <div class="timeline-content">
+            <div class="t-title">櫛田神社</div>
+            <div class="t-desc">博多祇園山笠的信仰中心與博多總鎮守，境內銀杏樹齡已逾千年。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E6%AB%9B%E7%94%B0%E7%A5%9E%E7%A4%BE" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">11:30</div>
+          <div class="timeline-content">
+            <div class="t-title">川端通商店街</div>
+            <div class="t-desc">博多最古老的商店街，拱廊全長約 400 公尺，適合買最後一波伴手禮。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%B7%9D%E7%AB%AF%E9%80%9A%E5%95%86%E5%BA%97%E8%A1%97" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">13:00</div>
+          <div class="timeline-content">
+            <div class="t-title">午餐</div>
+            <div class="t-desc">川端通周邊或博多站解決，行李記得預留手提空間裝伴手禮。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8D%88%E9%A4%90" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">14:30</div>
+          <div class="timeline-content">
+            <div class="t-title">前往福岡機場</div>
+            <div class="t-desc">地下鐵博多站直達機場國際線航廈，車程約 15 分鐘，提早 3-4 小時抵達辦理登機。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%89%8D%E5%BE%80%E7%A6%8F%E5%B2%A1%E6%A9%9F%E5%A0%B4" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-time">18:55</div>
+          <div class="timeline-content">
+            <div class="t-title">台灣虎航 IT721 FUK→TPE</div>
+            <div class="t-desc">20:25 抵達桃園，接續機場捷運與高鐵返家。</div>
+          
+            <a class="map-link" href="https://www.google.com/maps/search/?api=1&query=%E5%8F%B0%E7%81%A3%E8%99%8E%E8%88%AA%20IT721%20FUK%E2%86%92TPE" target="_blank" rel="noopener">📍 在 Google Maps 開啟</a>
+          </div>
+        </div>
+
+        </div>
+        <div class="day-section-divider"></div>
+        <div class="day-meals-label">🍽️ 今日餐食</div>
+        <div class="day-meals">
+          <div><span>早餐</span>飯店內或周邊</div>
+          <div><span>午餐</span>川端通・博多站周邊</div>
+          <div><span>晚餐</span>登機前於機場自理</div>
+        </div>
+        <div class="day-flag">真言宗東長寺・櫛田神社・川端通商店街｜提早 3-4 小時抵達機場</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="day-jump-row">
+    <a class="day-jump" data-target="page-day5" href="#page-day5">← 上一天</a>
+    <a class="day-jump" data-target="page-overview" href="#page-overview">回行程一覽</a>
+  </div>
+</section>
+</div>
+
+<div class="page" id="page-missions">
+<section id="missions">
+  <div class="section-head">
+    <span class="eyebrow">闖關任務</span>
+    <p>這趟九州行一定要完成的小任務，達成一項就打勾吧！</p>
+  </div>
+  <div class="prep-wrap">
+    <ul class="prep-list">
+      <li><label><input type="checkbox" data-mission="1"><span>⛩️ 太宰府天滿宮抽一支御神籤</span></label></li>
+      <li><label><input type="checkbox" data-mission="2"><span>🚣 高千穗峽划船成功不打轉</span></label></li>
+      <li><label><input type="checkbox" data-mission="3"><span>♨️ 由布院泡一次露天溫泉</span></label></li>
+      <li><label><input type="checkbox" data-mission="4"><span>🥖 吃到 The Full Full 明太子法國麵包</span></label></li>
+      <li><label><input type="checkbox" data-mission="5"><span>🍜 一蘭拉麵看手打製麵表演</span></label></li>
+      <li><label><input type="checkbox" data-mission="6"><span>🛍️ 唐吉訶德戰利品開箱</span></label></li>
+      <li><label><input type="checkbox" data-mission="7"><span>🥩 吃一次高千穗牛</span></label></li>
+      <li><label><input type="checkbox" data-mission="8"><span>📿 集滿一份御守／御朱印</span></label></li>
+      <li><label><input type="checkbox" data-mission="9"><span>🐎 草千里ヶ浜自費騎馬體驗</span></label></li>
+      <li><label><input type="checkbox" data-mission="10"><span>📸 拍到金鱗湖的晨霧美照</span></label></li>
+    </ul>
+  </div>
+</section>
+</div>
+
+<div class="page" id="page-souvenir">
+<section id="souvenir">
+  <div class="section-head">
+    <span class="eyebrow">伴手禮清單</span>
+  </div>
+  <div class="packing-grid">
+
+    <div class="pack-card">
+      <span class="pack-eyebrow">HAKATA・TENJIN</span>
+      <h3>🍬 博多・天神</h3>
+      <ul>
+        <li><label><input type="checkbox"><span>明太子（各家名店口味不同，可多方比較）</span></label></li>
+        <li><label><input type="checkbox"><span>博多通饅頭</span></label></li>
+        <li><label><input type="checkbox"><span>一蘭拉麵泡麵組</span></label></li>
+        <li><label><input type="checkbox"><span>唐吉訶德藥妝、零食</span></label></li>
+        <li><label><input type="checkbox"><span>The Full Full 明太子法國麵包（當天現吃或宅配）</span></label></li>
+      </ul>
+    </div>
+
+    <div class="pack-card">
+      <span class="pack-eyebrow">YUFUIN</span>
+      <h3>♨️ 由布院</h3>
+      <ul>
+        <li><label><input type="checkbox"><span>布丁・起司蛋糕（湯之坪街道人氣店多）</span></label></li>
+        <li><label><input type="checkbox"><span>由布院牛奶製品</span></label></li>
+        <li><label><input type="checkbox"><span>溫泉入浴劑</span></label></li>
+        <li><label><input type="checkbox"><span>木質雜貨、香氛小物</span></label></li>
+      </ul>
+    </div>
+
+    <div class="pack-card">
+      <span class="pack-eyebrow">TAKACHIHO・DAZAIFU</span>
+      <h3>⛩️ 高千穗・太宰府</h3>
+      <ul>
+        <li><label><input type="checkbox"><span>太宰府天滿宮 御守／御朱印</span></label></li>
+        <li><label><input type="checkbox"><span>梅枝餅（可現場吃，不易久放）</span></label></li>
+        <li><label><input type="checkbox"><span>高千穗牛相關加工食品</span></label></li>
+        <li><label><input type="checkbox"><span>神話主題小物</span></label></li>
+      </ul>
+    </div>
+
+    <div class="pack-card">
+      <span class="pack-eyebrow">TIPS</span>
+      <h3>💡 採買提醒</h3>
+      <ul>
+        <li>易碎品（起司蛋糕、布丁）建議安排在回程前一天購買</li>
+        <li>唐吉訶德、機場免稅可退稅，記得攜帶護照</li>
+        <li>行李箱預留空間，或準備一個摺疊袋裝伴手禮</li>
+        <li>生鮮食品（明太子、起司蛋糕）注意保存期限與是否需冷藏</li>
+      </ul>
+    </div>
+
+  </div>
 </section>
 </div>
 
@@ -1392,11 +1983,33 @@
   const pages = document.querySelectorAll('.page');
   const navItems = document.querySelectorAll('.nav-item');
   const hero = document.querySelector('.hero');
+  const navToggle = document.getElementById('navToggle');
+  const navDropdown = document.getElementById('navDropdown');
+  const navToggleIcon = document.getElementById('navToggleIcon');
+  const navToggleLabel = document.getElementById('navToggleLabel');
+
+  function closeDropdown(){
+    navDropdown.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  navToggle.addEventListener('click', () => {
+    const isOpen = navDropdown.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
 
   function showPage(targetId){
     pages.forEach(p => p.classList.toggle('active', p.id === targetId));
     navItems.forEach(item => item.classList.toggle('active', item.dataset.target === targetId));
+    const selected = Array.from(navItems).find(item => item.dataset.target === targetId);
+    if(selected){
+      const iconEl = selected.querySelector('.nav-icon');
+      const iconText = iconEl ? iconEl.textContent : '';
+      navToggleIcon.textContent = iconText;
+      navToggleLabel.textContent = selected.textContent.replace(iconText, '').trim();
+    }
     hero.classList.add('hidden');
+    closeDropdown();
     window.scrollTo({ top: 0, behavior:'auto' });
   }
 
@@ -1404,6 +2017,43 @@
     el.addEventListener('click', (e) => {
       e.preventDefault();
       showPage(el.dataset.target);
+    });
+  });
+
+  // 行前準備勾選狀態記憶
+  document.querySelectorAll('.prep-list input[type="checkbox"]').forEach(box => {
+    const key = 'kyushu-prep-' + box.dataset.prep;
+    try{
+      box.checked = localStorage.getItem(key) === '1';
+    }catch(e){}
+    box.addEventListener('change', () => {
+      try{
+        localStorage.setItem(key, box.checked ? '1' : '0');
+      }catch(e){}
+    });
+  });
+
+  // 闖關任務勾選狀態記憶
+  document.querySelectorAll('[data-mission]').forEach(box => {
+    const key = 'kyushu-mission-' + box.dataset.mission;
+    try{
+      box.checked = localStorage.getItem(key) === '1';
+    }catch(e){}
+    box.addEventListener('change', () => {
+      try{
+        localStorage.setItem(key, box.checked ? '1' : '0');
+      }catch(e){}
+    });
+  });
+
+  // 行前準備站 子頁籤切換
+  const prepTabBtns = document.querySelectorAll('.prep-tab-btn');  const prepTabs = document.querySelectorAll('.prep-tab');
+  prepTabBtns.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = btn.dataset.preptab;
+      prepTabs.forEach(t => t.classList.toggle('active', t.id === target));
+      prepTabBtns.forEach(b => b.classList.toggle('active', b === btn));
     });
   });
 </script>

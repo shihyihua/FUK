@@ -892,6 +892,50 @@
     color:var(--indigo-deep);
   }
 
+  /* ---------- BUDGET (editable) ---------- */
+  .bt-toolbar{
+    display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;
+    gap:.7rem; margin-bottom:1rem;
+  }
+  .bt-toggle{ display:inline-flex; border:1px solid var(--kaki); border-radius:999px; overflow:hidden; }
+  .bt-toggle button{
+    font:inherit; font-size:.85rem; font-weight:700; letter-spacing:.06em;
+    padding:.4rem 1.1rem; border:0; background:transparent; color:var(--kaki); cursor:pointer;
+  }
+  .bt-toggle button.on{ background:var(--kaki); color:var(--washi); }
+  .bt-rate{ display:flex; align-items:center; gap:.4rem; font-size:.8rem; color:rgba(34,32,28,0.6); }
+  .bt-rate input{
+    width:4.2rem; font:inherit; font-size:.9rem; text-align:center; padding:.3rem .4rem;
+    border:1px solid var(--line); border-radius:4px; background:var(--washi); color:var(--ink);
+  }
+  .bt-head, .bt-row{
+    display:grid; grid-template-columns:minmax(0,1fr) 6.2rem 6.2rem; gap:.5rem; align-items:center;
+  }
+  .bt-head{
+    padding-bottom:.5rem; border-bottom:2px solid var(--kaki);
+    font-size:.8rem; font-weight:700; color:var(--indigo-deep); letter-spacing:.1em;
+  }
+  .bt-head span:not(:first-child){ text-align:right; padding-right:.6rem; }
+  .bt-row{ padding:.45rem 0; border-bottom:1px solid var(--line); font-size:.92rem; }
+  .bt-row input{
+    width:100%; min-width:0; font:inherit; font-size:.92rem; padding:.4rem .5rem;
+    border:1px solid var(--line); border-radius:4px; background:var(--washi); color:var(--ink);
+  }
+  .bt-row input.num{ text-align:right; font-weight:700; color:var(--kaki); }
+  .bt-row input:focus, .bt-rate input:focus{ outline:2px solid var(--kaki-soft); border-color:var(--kaki); }
+  .bt-row input.lbl{ border-style:dashed; }
+  .bt-sum{
+    display:grid; grid-template-columns:minmax(0,1fr) 6.2rem 6.2rem; gap:.5rem;
+    padding-top:1rem; margin-top:.4rem; border-top:2px solid var(--kaki);
+    font-weight:700; font-size:1rem; color:var(--indigo-deep);
+  }
+  .bt-sum span:not(:first-child){ text-align:right; padding-right:.6rem; white-space:nowrap; }
+  .bt-status{ text-align:center; font-size:.75rem; color:rgba(34,32,28,0.5); margin-top:1rem; min-height:1.1rem; }
+  @media (max-width:640px){
+    .budget-card{ padding:1.2rem 1rem; }
+    .bt-head, .bt-row, .bt-sum{ grid-template-columns:minmax(0,1fr) 5.4rem 5.4rem; gap:.35rem; }
+  }
+
   /* ---------- FOOTER ---------- */
   footer{
     padding:3rem 6vw;
@@ -1183,38 +1227,35 @@
 
     <div class="budget-hero">
       <span class="budget-hero-label">平均每人花費</span>
-      <span class="budget-hero-amount">TWD 40,703</span>
-      <span class="budget-hero-sub">共同費用兩人平均分攤，不含 Suica 儲值與日幣兌換</span>
+      <span class="budget-hero-amount" id="bt-avg">—</span>
+      <span class="budget-hero-sub">J、E 兩人合計除以 2，隨下方數字即時更新</span>
     </div>
 
     <div class="budget-people">
       <div class="budget-person">
-        <span class="budget-person-name">J</span>
-        <span class="budget-person-amount">TWD 40,341</span>
+        <span class="budget-person-name">J 合計</span>
+        <span class="budget-person-amount" id="bt-tot-j">—</span>
       </div>
       <div class="budget-person">
-        <span class="budget-person-name">E</span>
-        <span class="budget-person-amount">TWD 41,065</span>
+        <span class="budget-person-name">E 合計</span>
+        <span class="budget-person-amount" id="bt-tot-e">—</span>
       </div>
     </div>
-    <p class="budget-hint">兩人實際金額略有差異，主要來自高鐵、台鐵車票價格不同</p>
+    <p class="budget-hint">所有看到此頁的人都能修改，變更會自動儲存並同步給大家</p>
 
     <div class="budget-card">
-      <span class="pack-eyebrow">明細（共同費用已標示平均／人）</span>
-      <ul class="budget-list">
-        <li><span>機＋酒＋保險（2人）</span><span class="budget-amount">TWD 71,019<small>平均 35,510／人</small></span></li>
-        <li><span>高鐵　J</span><span class="budget-amount">TWD 210</span></li>
-        <li><span>高鐵　E</span><span class="budget-amount">TWD 890</span></li>
-        <li><span>捷運　J</span><span class="budget-amount">TWD 70</span></li>
-        <li><span>捷運　E</span><span class="budget-amount">TWD 70</span></li>
-        <li><span>台鐵　E</span><span class="budget-amount">TWD 44</span></li>
-        <li><span>eSIM（2人）</span><span class="budget-amount">TWD 777<small>平均 389／人</small></span></li>
-        <li><span>由布院之森 JR（2人）</span><span class="budget-amount">TWD 4,711<small>平均 2,356／人</small></span></li>
-        <li><span>草千里・高千穗一日券（2人）</span><span class="budget-amount">TWD 3,614<small>平均 1,807／人</small></span></li>
-        <li><span>錢包 APP Suica 卡儲值</span><span class="budget-amount budget-note">依個人需求</span></li>
-        <li><span>日幣兌換</span><span class="budget-amount budget-note">依個人需求</span></li>
-      </ul>
-      <div class="budget-total"><span>小計（不含依個人需求項目）</span><span>TWD 81,405</span></div>
+      <div class="bt-toolbar">
+        <div class="bt-toggle" id="bt-toggle">
+          <button type="button" data-cur="NTD" class="on">NTD</button>
+          <button type="button" data-cur="JPY">JPY</button>
+        </div>
+        <label class="bt-rate">匯率 1 JPY ＝ <input type="number" id="bt-rate" inputmode="decimal" step="0.001" min="0" value="0.2"> NTD</label>
+      </div>
+
+      <div class="bt-head"><span>項目</span><span>J</span><span>E</span></div>
+      <div id="bt-rows"></div>
+      <div class="bt-sum"><span>合計</span><span id="bt-sum-j">—</span><span id="bt-sum-e">—</span></div>
+      <div class="bt-status" id="bt-status"></div>
     </div>
   </div>
   </div>
@@ -1293,7 +1334,7 @@
           </div>
         </div>
         <div class="timeline-item">
-          <div class="timeline-time">機場</div>
+          <div class="timeline-time">早餐</div>
           <div class="timeline-content">
             <div class="t-title">🥣 釜山機場早餐</div>
             <div class="t-desc">轉機空檔於機場內解決早餐，留意登機門位置與轉機安檢時間。</div>
@@ -1338,6 +1379,10 @@
             <a class="map-link" href="https://maps.app.goo.gl/dMZKpNv94kccRXCy6?g_st=ic" target="_blank" rel="noopener">📍 Google地圖</a>
           </div>
         </div>
+        </div>
+        <div class="day-section-divider"></div>
+        <div class="pack-eyebrow" style="display:block;margin-top:1.4rem;">——以下行程彈性調整——</div>
+        <div class="timeline-group">
         <div class="timeline-item">
           <div class="timeline-time">-</div>
           <div class="timeline-content">
@@ -1345,8 +1390,11 @@
             <div class="t-desc">CENE STORE FUKUOKA、Luz 福岡天神（運動、戶外品牌）等，可依喜好挑選店家逛逛。</div>
           </div>
         </div>
+        </div>
+        <div class="day-section-divider"></div>
+        <div class="timeline-group">
         <div class="timeline-item">
-          <div class="timeline-time">-</div>
+          <div class="timeline-time">17:45</div>
           <div class="timeline-content">
             <div class="t-title">🛍️ The full full 天神店（已預約！）</div>
             <div class="t-desc">人氣明太子法國麵包店，已提前預約取貨，記得準時前往。</div>
@@ -1791,7 +1839,7 @@
           <div class="timeline-content">
             <div class="t-title">📷 一棵像素樹「Pixel Tree」</div>
             <div class="t-desc">天神特色地標裝置，順路拍照留念。</div>
-            <a class="map-link" href="https://maps.app.goo.gl/Wrt9MCk" target="_blank" rel="noopener">📍 Google地圖</a>
+            <a class="map-link" href="https://maps.app.goo.gl/4qwbndpUHScu1cED9?g_st=ic" target="_blank" rel="noopener">📍 Google地圖</a>
           </div>
         </div>
         <div class="timeline-item">
@@ -2074,6 +2122,200 @@
       prepTabBtns.forEach(b => b.classList.toggle('active', b === btn));
     });
   });
+</script>
+
+<script>
+(function(){
+  const FIXED = [
+    ['flight','機＋酒＋保險'],['insure','保險費'],['hsr','高鐵'],['rail','捷運台鐵'],
+    ['esim','eSIM'],['yufu','由布院之森 JR'],['takachiho','高千穗・草千里一日券'],
+    ['suica','錢包 APP Suica 卡儲值'],['hair','剪頭髮'],['nail','指甲']
+  ];
+  const CUSTOM = 5;
+  // 預設值：沿用舊版總覽的金額（NTD）
+  const DEFAULT_CELLS = {
+    flight_j:35510, flight_e:35509, hsr_j:210, hsr_e:890, rail_j:70, rail_e:114,
+    esim_j:389, esim_e:388, yufu_j:2356, yufu_e:2355, takachiho_j:1807, takachiho_e:1807
+  };
+  const DOC_PATH = 'budget/main';
+
+  let rate = 0.2;
+  let disp = 'NTD';
+  try{ const d = localStorage.getItem('kyushu-budget-disp'); if(d==='JPY'||d==='NTD') disp = d; }catch(e){}
+  const cells = {};   // key -> {v, c}
+  const labels = {};  // custom_i -> text
+  Object.keys(DEFAULT_CELLS).forEach(k => cells[k] = {v:DEFAULT_CELLS[k], c:'NTD'});
+
+  const rowsEl = document.getElementById('bt-rows');
+  const rateEl = document.getElementById('bt-rate');
+  const statusEl = document.getElementById('bt-status');
+  if(!rowsEl) return;
+
+  // build rows
+  const allRows = FIXED.map(r => ({key:r[0], label:r[1], custom:false}));
+  for(let i=1;i<=CUSTOM;i++) allRows.push({key:'x'+i, label:'', custom:true});
+  allRows.forEach(r => {
+    const row = document.createElement('div');
+    row.className = 'bt-row';
+    const first = document.createElement('div');
+    if(r.custom){
+      const li = document.createElement('input');
+      li.type='text'; li.className='lbl'; li.placeholder='自訂項目 '+r.key.slice(1); li.maxLength=30;
+      li.dataset.label = r.key; first.appendChild(li);
+    }else{
+      first.textContent = r.label;
+    }
+    row.appendChild(first);
+    ['j','e'].forEach(p => {
+      const inp = document.createElement('input');
+      inp.type='number'; inp.className='num'; inp.inputMode='decimal'; inp.step='any'; inp.min='0';
+      inp.placeholder='0'; inp.dataset.cell = r.key+'_'+p;
+      row.appendChild(inp);
+    });
+    rowsEl.appendChild(row);
+  });
+
+  const toNTD = c => !c || c.v==null || isNaN(c.v) ? 0 : (c.c==='JPY' ? c.v*rate : c.v);
+  const fromNTD = n => disp==='JPY' ? (rate>0 ? n/rate : 0) : n;
+  const fmt = n => Math.round(n).toLocaleString('en-US');
+  const money = n => (disp==='JPY' ? 'JPY ' : 'TWD ') + fmt(fromNTD(n));
+
+  function cellDisplay(c){
+    if(!c || c.v==null || isNaN(c.v)) return '';
+    if(c.c===disp) return String(c.v);
+    return String(Math.round(disp==='JPY' ? (rate>0 ? c.v/rate : 0) : c.v*rate));
+  }
+
+  function renderInputs(){
+    rowsEl.querySelectorAll('input[data-cell]').forEach(inp => {
+      if(inp === document.activeElement) return;
+      inp.value = cellDisplay(cells[inp.dataset.cell]);
+    });
+    rowsEl.querySelectorAll('input[data-label]').forEach(inp => {
+      if(inp === document.activeElement) return;
+      inp.value = labels[inp.dataset.label] || '';
+    });
+    if(rateEl !== document.activeElement) rateEl.value = rate;
+    document.querySelectorAll('#bt-toggle button').forEach(b => b.classList.toggle('on', b.dataset.cur===disp));
+  }
+
+  function renderTotals(){
+    let j=0, e=0;
+    allRows.forEach(r => { j += toNTD(cells[r.key+'_j']); e += toNTD(cells[r.key+'_e']); });
+    document.getElementById('bt-tot-j').textContent = money(j);
+    document.getElementById('bt-tot-e').textContent = money(e);
+    document.getElementById('bt-sum-j').textContent = fmt(fromNTD(j));
+    document.getElementById('bt-sum-e').textContent = fmt(fromNTD(e));
+    document.getElementById('bt-avg').textContent = money((j+e)/2);
+  }
+  const renderAll = () => { renderInputs(); renderTotals(); };
+
+  // ---- shared storage (db) ----
+  let db = null, ref = null, docExists = false, pending = null, writing = false, timer = null;
+
+  function setStatus(t){ statusEl.textContent = t; }
+
+  function mergeInto(target, patch){
+    Object.keys(patch).forEach(k => {
+      const v = patch[k];
+      if(v && typeof v==='object' && !Array.isArray(v)){
+        target[k] = target[k] && typeof target[k]==='object' ? target[k] : {};
+        mergeInto(target[k], v);
+      }else target[k] = v;
+    });
+  }
+  function fullState(){
+    return {rate:rate, cells:JSON.parse(JSON.stringify(cells)), labels:JSON.parse(JSON.stringify(labels))};
+  }
+  function queue(patch){
+    if(!ref){ setStatus('目前為離線模式，變更不會同步'); return; }
+    pending = pending || {};
+    mergeInto(pending, patch);
+    setStatus('儲存中…');
+    clearTimeout(timer);
+    timer = setTimeout(flush, 600);
+  }
+  async function flush(){
+    if(writing || !pending) return;
+    writing = true;
+    const patch = pending; pending = null;
+    try{
+      if(docExists) await ref.update(patch);
+      else { await ref.set(fullState()); docExists = true; }
+      setStatus('已儲存 ✓');
+    }catch(err){
+      setStatus('儲存失敗，請稍後再試');
+      console.error(err);
+    }
+    writing = false;
+    if(pending){ clearTimeout(timer); timer = setTimeout(flush, 300); }
+  }
+
+  function applyRemote(data){
+    if(!data) return;
+    if(typeof data.rate==='number' && data.rate>0) rate = data.rate;
+    if(data.cells){
+      Object.keys(data.cells).forEach(k => {
+        // 不覆蓋尚未送出的本機輸入
+        if(pending && pending.cells && pending.cells[k]) return;
+        cells[k] = data.cells[k];
+      });
+    }
+    if(data.labels){
+      Object.keys(data.labels).forEach(k => {
+        if(pending && pending.labels && k in pending.labels) return;
+        labels[k] = data.labels[k];
+      });
+    }
+  }
+
+  // ---- events ----
+  rowsEl.addEventListener('input', ev => {
+    const t = ev.target;
+    if(t.dataset.cell){
+      const raw = t.value.trim();
+      const num = raw==='' ? null : parseFloat(raw);
+      const c = {v:(num==null||isNaN(num)) ? null : num, c:disp};
+      cells[t.dataset.cell] = c;
+      renderTotals();
+      queue({cells:{[t.dataset.cell]:c}});
+    }else if(t.dataset.label){
+      labels[t.dataset.label] = t.value;
+      queue({labels:{[t.dataset.label]:t.value}});
+    }
+  });
+  rowsEl.addEventListener('change', renderInputs);
+  rateEl.addEventListener('input', () => {
+    const r = parseFloat(rateEl.value);
+    if(!(r>0)) return;
+    rate = r; renderTotals(); queue({rate:rate});
+  });
+  rateEl.addEventListener('change', renderInputs);
+  document.getElementById('bt-toggle').addEventListener('click', ev => {
+    const b = ev.target.closest('button'); if(!b) return;
+    disp = b.dataset.cur;
+    try{ localStorage.setItem('kyushu-budget-disp', disp); }catch(e){}
+    if(document.activeElement && document.activeElement.blur) document.activeElement.blur();
+    renderAll();
+  });
+
+  renderAll();
+
+  // ---- connect ----
+  (async function(){
+    try{
+      if(!window.claude || !window.claude.use) { setStatus('目前為離線模式，變更不會同步'); return; }
+      db = await window.claude.use('db');
+      if(!db){ setStatus('目前為離線模式，變更不會同步'); return; }
+      ref = db.doc(DOC_PATH);
+      ref.onSnapshot(snap => {
+        docExists = snap.exists;
+        if(snap.exists){ applyRemote(snap.data()); renderAll(); }
+        if(!pending && !writing) setStatus(snap.exists ? '已同步 ✓' : '');
+      }, err => { console.error(err); setStatus('同步中斷，請重新整理頁面'); });
+    }catch(err){ console.error(err); setStatus('目前為離線模式，變更不會同步'); }
+  })();
+})();
 </script>
 
 </body>

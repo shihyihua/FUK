@@ -2129,13 +2129,14 @@
   const FIXED = [
     ['flight','機＋酒＋保險'],['insure','保險費'],['hsr','高鐵'],['metro','捷運'],['tra','台鐵'],
     ['esim','eSIM'],['yufu','由布院之森 JR'],['takachiho','高千穗・草千里一日券'],
-    ['suica','錢包 APP Suica 卡儲值'],['hair','剪頭髮'],['nail','指甲']
+    ['suica','錢包 APP Suica 卡儲值'],['hair','剪/染頭髮'],['nail','指甲']
   ];
   const CUSTOM = 5;
   // 預設值：沿用舊版總覽的金額（NTD）
   const DEFAULT_CELLS = {
-    flight_j:35510, flight_e:35509, hsr_j:210, hsr_e:890, metro_j:70, metro_e:70, tra_e:44,
-    esim_j:389, esim_e:388, yufu_j:2356, yufu_e:2355, takachiho_j:1807, takachiho_e:1807
+    flight_j:47767, flight_e:23252, hsr_j:210, hsr_e:890, metro_j:70, metro_e:70, tra_e:22,
+    esim_j:394, esim_e:394, yufu_j:2355, yufu_e:2356, takachiho_j:3614, takachiho_e:0,
+    suica_e:2999, hair_j:2500, hair_e:450, nail_e:1300
   };
   const DOC_PATH = 'budget/main';
 
@@ -2214,6 +2215,14 @@
   let db = null, ref = null, docExists = false, pending = null, writing = false, timer = null;
 
   function setStatus(t){ statusEl.textContent = t; }
+  const LS_KEY = 'kyushu-budget-data-v2';
+  function saveLocal(){ try{ localStorage.setItem(LS_KEY, JSON.stringify(fullState())); }catch(e){} }
+  function loadLocal(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if(raw){ const d = JSON.parse(raw); if(d){ applyRemote(d); } }
+    }catch(e){}
+  }
 
   function mergeInto(target, patch){
     Object.keys(patch).forEach(k => {
@@ -2228,12 +2237,13 @@
     return {rate:rate, cells:JSON.parse(JSON.stringify(cells)), labels:JSON.parse(JSON.stringify(labels))};
   }
   function queue(patch){
-    if(!ref){ setStatus('目前為離線模式，變更不會同步'); return; }
+    saveLocal();
+    if(!ref){ setStatus('已存在此裝置（未連線，無法同步給其他人）'); return; }
     pending = pending || {};
     mergeInto(pending, patch);
     setStatus('儲存中…');
     clearTimeout(timer);
-    timer = setTimeout(flush, 600);
+    timer = setTimeout(flush, 150);
   }
   async function flush(){
     if(writing || !pending) return;
@@ -2244,11 +2254,14 @@
       else { await ref.set(fullState()); docExists = true; }
       setStatus('已儲存 ✓');
     }catch(err){
-      setStatus('儲存失敗，請稍後再試');
+      setStatus('儲存失敗，正在重試…');
       console.error(err);
+      pending = pending || {};
+      mergeInto(pending, patch);
+      clearTimeout(timer); timer = setTimeout(flush, 2000);
     }
     writing = false;
-    if(pending){ clearTimeout(timer); timer = setTimeout(flush, 300); }
+    if(pending){ clearTimeout(timer); timer = setTimeout(flush, 200); }
   }
 
   function applyRemote(data){
@@ -2299,21 +2312,22 @@
     renderAll();
   });
 
+  loadLocal();
   renderAll();
 
   // ---- connect ----
   (async function(){
     try{
-      if(!window.claude || !window.claude.use) { setStatus('目前為離線模式，變更不會同步'); return; }
+      if(!window.claude || !window.claude.use) { setStatus('未連線：數字只存在此裝置，不會同步給其他人'); return; }
       db = await window.claude.use('db');
-      if(!db){ setStatus('目前為離線模式，變更不會同步'); return; }
+      if(!db){ setStatus('未連線：數字只存在此裝置，不會同步給其他人'); return; }
       ref = db.doc(DOC_PATH);
       ref.onSnapshot(snap => {
         docExists = snap.exists;
         if(snap.exists){ applyRemote(snap.data()); renderAll(); }
         if(!pending && !writing) setStatus(snap.exists ? '已同步 ✓' : '');
       }, err => { console.error(err); setStatus('同步中斷，請重新整理頁面'); });
-    }catch(err){ console.error(err); setStatus('目前為離線模式，變更不會同步'); }
+    }catch(err){ console.error(err); setStatus('未連線：數字只存在此裝置，不會同步給其他人'); }
   })();
 })();
 </script>
